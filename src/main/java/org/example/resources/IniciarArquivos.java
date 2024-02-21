@@ -22,10 +22,10 @@ public class IniciarArquivos {
         try {
             if (!arquivoArtistas.exists()) {
                 if (arquivoArtistas.createNewFile()) {
-                    escreverCabecalho(arquivoArtistas);
+                    //escreverCabecalho(arquivoArtistas);
                 }
             } else if (arquivoArtistas.length() == 0) {
-                escreverCabecalho(arquivoArtistas);
+                //escreverCabecalho(arquivoArtistas);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,10 +34,10 @@ public class IniciarArquivos {
         try {
             if (!arquivoDiretores.exists()) {
                 if (arquivoDiretores.createNewFile()) {
-                    escreverCabecalho(arquivoDiretores);
+                    //escreverCabecalho(arquivoDiretores);
                 }
             } else if (arquivoDiretores.length() == 0) {
-                escreverCabecalho(arquivoDiretores);
+                //escreverCabecalho(arquivoDiretores);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,17 +46,17 @@ public class IniciarArquivos {
         try {
             if (!arquivoFilmes.exists()) {
                 if (arquivoFilmes.createNewFile()) {
-                    escreverCabecalho(arquivoFilmes);
+                    //escreverCabecalho(arquivoFilmes);
                 }
             } else if (arquivoFilmes.length() == 0) {
-                escreverCabecalho(arquivoFilmes);
+                //escreverCabecalho(arquivoFilmes);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void escreverCabecalho(File arquivo) {
+    /*public static void escreverCabecalho(File arquivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo, true))) {
             // Escreve o cabeçalho no arquivo
             writer.write(String.format("%-8s | %-45s | %-10s", "Id", "Nome", "Telefone(s): Id   (DDD)   Numero"));
@@ -64,5 +64,5 @@ public class IniciarArquivos {
         } catch (IOException e) {
             System.out.println("Erro ao escrever o cabeçalho: " + e.getMessage());
         }
-    }
+    }*/
 }

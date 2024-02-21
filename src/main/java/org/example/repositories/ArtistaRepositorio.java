@@ -31,10 +31,4 @@ public class ArtistaRepositorio extends  AbstractRepositorio {
         Artista artista = (Artista) objeto;
         return artista.getId().equals(id);
     }
-
-    public void escreverArquivo() {
-        Set<Object> artistas = (Set<Object>) bancoDeDados.buscarObjetosPorTipo(Artista.class);
-        EscreverArquivos escrever = new EscreverArquivos();
-        escrever.escreverArtistas(artistas);
-    }
 }

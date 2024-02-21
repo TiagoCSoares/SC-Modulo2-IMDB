@@ -7,25 +7,27 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 public class EscreverArquivos {
-        public void escreverArtistas(Set<Object> artistas) {
-            escreverDados("src/main/java/org/example/arquivos/artistas.txt", artistas);
+
+        public void escreverArtistas(List<Artista> artistas) {
+            escreverDadosArtistas("src/main/java/org/example/arquivos/artistas.txt", artistas);
         }
 
-        public void escreverDiretores(Set<Object> diretores) {
-            escreverDados("src/main/java/org/example/arquivos/diretores.txt", diretores);
+        /*public void escreverDiretores(Set<Object> diretores) {
+            escreverDadosDiretores("src/main/java/org/example/arquivos/diretores.txt", diretores);
         }
 
         public void escreverFilmes(Set<Object> filmes) {
-            escreverDados("src/main/java/org/example/arquivos/filmes.txt", filmes);
+            escreverDadosFilmes("src/main/java/org/example/arquivos/filmes.txt", filmes);
         }
-
-        private void escreverDados(String nomeArquivo, Set<Object> dados) {
+*/
+        private void escreverDadosArtistas(String nomeArquivo, List<Artista> artistas) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
-                for (Object obj : dados) {
-                    writer.write(obj.toString());
+                for (Artista artista : artistas) {
+                    writer.write(String.format("%-8d | %-45s | %-10s | %-2c", artista.getId(), artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
                     writer.newLine();
                 }
             } catch (IOException e) {
@@ -33,3 +35,4 @@ public class EscreverArquivos {
             }
         }
 }
+

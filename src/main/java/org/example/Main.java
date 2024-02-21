@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
         BancoDeDados bancoDeDados = new BancoDeDados();
-        //IniciarArquivos.iniciarArquivos();
+        IniciarArquivos.iniciarArquivos();
 
         ArtistaRepositorio artistaRepositorio = new ArtistaRepositorio(bancoDeDados);
         ArtistaService artistaService = new ArtistaService(artistaRepositorio);
@@ -20,6 +20,7 @@ public class Main {
         //FilmeRepositorio filmeRepositorio = new FilmeRepositorio(bancoDeDados);
         //FilmeService filmeService = new FilmeService(filmeRepositorio, musicoService, artistaService, diretorService);
 
+        // TODO: Preencher os bancos com os arquivos já criados
 
         Menu principal = new Menu(artistaService/*, diretorService, filmeService*/);
         principal.execute();

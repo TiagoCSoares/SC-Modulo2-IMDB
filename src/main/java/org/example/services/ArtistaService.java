@@ -5,6 +5,7 @@ import org.example.repositories.ArtistaRepositorio;
 import org.example.resources.EscreverArquivos;
 
 import java.util.List;
+import java.util.Set;
 
 public class ArtistaService {
 
@@ -53,7 +54,9 @@ public class ArtistaService {
     }
 
     public void escreverArquivo() {
-        artistaRepositorio.escreverArquivo();
+        List<Artista> artistas = listar();
+        EscreverArquivos escrever = new EscreverArquivos();
+        escrever.escreverArtistas(artistas);
     }
 
     public List listar() {

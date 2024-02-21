@@ -7,6 +7,8 @@ import org.example.view.artista.ArtistaMenu;
 import org.example.view.artista.ListarArtistaView;
 
 import java.nio.file.DirectoryStream;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Menu extends AbstractMenuView{
 
@@ -34,7 +36,8 @@ public class Menu extends AbstractMenuView{
         switch (option) {
             case 2 -> new ArtistaMenu(artistaService).execute();
             case 0 -> {
-                EscreverArquivos escrever = new EscreverArquivos();
+                Set<Object> artistas = new HashSet<>(artistaService.listar());
+                artistaService.escreverArquivo();
                 System.exit(1);
                 }
 
