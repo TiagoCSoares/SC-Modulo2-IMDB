@@ -1,6 +1,7 @@
 package org.example.resources;
 
 import org.example.entites.Artista;
+import org.example.entites.Filme;
 import org.example.repositories.ArtistaRepositorio;
 
 import java.io.BufferedWriter;
@@ -28,6 +29,9 @@ public class EscreverArquivos {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
                 for (Artista artista : artistas) {
                     writer.write(String.format("%-8d | %-45s | %-10s | %-2c", artista.getId(), artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
+                    for(Filme filmes : artista.getFilmes()) {
+                        writer.write(String.format(" | %-8d - %-45s - %-10s - %-2c", filmes.getId(), filmes.getNome(), filmes.getGenero(), filmes.getDataLancamento(), filmes.getDuracao()));
+                    }
                     writer.newLine();
                 }
             } catch (IOException e) {

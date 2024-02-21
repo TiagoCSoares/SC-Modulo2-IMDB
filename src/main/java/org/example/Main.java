@@ -21,6 +21,7 @@ public class Main {
         //FilmeService filmeService = new FilmeService(filmeRepositorio, musicoService, artistaService, diretorService);
 
         // TODO: Preencher os bancos com os arquivos já criados
+        //LerArquivos.preencherBancoArtistas(artistaService);
 
         Menu principal = new Menu(artistaService/*, diretorService, filmeService*/);
         principal.execute();
