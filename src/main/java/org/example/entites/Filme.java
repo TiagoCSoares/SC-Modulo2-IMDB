@@ -12,4 +12,12 @@ public class Filme {
     private List<Artista> artistas;
     private List<Diretor> diretores;
 
+    public Filme(String nome, String genero, String dataLancamento, Float duracao, List<Artista> artistas, List<Diretor> diretores) {
+        this.nome = nome;
+        this.genero = genero;
+        this.dataLancamento = dataLancamento;
+        this.duracao = duracao;
+        this.artistas = artistas;
+        this.diretores = diretores;
+    }
 }

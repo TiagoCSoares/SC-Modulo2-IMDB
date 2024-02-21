@@ -2,6 +2,9 @@ package org.example.repositories;
 
 import org.example.banco.BancoDeDados;
 import org.example.entites.Artista;
+import org.example.resources.EscreverArquivos;
+
+import java.util.Set;
 
 public class ArtistaRepositorio extends  AbstractRepositorio {
 
@@ -29,4 +32,9 @@ public class ArtistaRepositorio extends  AbstractRepositorio {
         return artista.getId().equals(id);
     }
 
+    public void escreverArquivo() {
+        Set<Object> artistas = (Set<Object>) bancoDeDados.buscarObjetosPorTipo(Artista.class);
+        EscreverArquivos escrever = new EscreverArquivos();
+        escrever.escreverArtistas(artistas);
+    }
 }

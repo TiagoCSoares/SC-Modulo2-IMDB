@@ -2,15 +2,17 @@ package org.example;
 
 import org.example.banco.BancoDeDados;
 import org.example.repositories.ArtistaRepositorio;
+import org.example.resources.IniciarArquivos;
 import org.example.services.ArtistaService;
 import org.example.view.Menu;
+import org.example.view.artista.ListarArtistaView;
 
 public class Main {
     public static void main(String[] args) {
 
         BancoDeDados bancoDeDados = new BancoDeDados();
-        //MusicoRepositorio musicoRepositorio = new MusicoRepositorio(bancoDeDados);
-        //MusicoService musicoService = new MusicoService(musicoRepositorio);
+        //IniciarArquivos.iniciarArquivos();
+
         ArtistaRepositorio artistaRepositorio = new ArtistaRepositorio(bancoDeDados);
         ArtistaService artistaService = new ArtistaService(artistaRepositorio);
         //DiretorRepositorio diretorRepositorio = new DiretorRepositorio(bancoDeDados);
