@@ -23,6 +23,7 @@ public class CadastrarArtistaView {
 
         System.out.println("Informe o nome do artista:");
         String nome = scanner.nextLine();
+        // TODO: Validar se o nome já está cadastrado, se sim verificar as outras características do artista
 
         System.out.println("Digite a data de nascimento do artista (DD/MM/YYYY):");
         String dataNascimento = scanner.nextLine();

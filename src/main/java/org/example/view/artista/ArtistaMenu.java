@@ -28,6 +28,7 @@ public class ArtistaMenu extends AbstractMenuView {
     protected void executeOption(Integer option) {
         switch (option) {
             case 1 -> new CadastrarArtistaView(artistaService).execute();
+            case 3 -> new ExcluirArtistaView(artistaService).execute();
             case 4 -> new ListarArtistaView(artistaService).execute();
             case 0 -> {return;}
             default -> System.out.println("Opcao não disponível");

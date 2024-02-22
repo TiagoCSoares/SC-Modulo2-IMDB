@@ -4,6 +4,7 @@ import org.example.banco.BancoDeDados;
 import org.example.entites.Artista;
 import org.example.resources.EscreverArquivos;
 
+import java.util.List;
 import java.util.Set;
 
 public class ArtistaRepositorio extends  AbstractRepositorio {
@@ -30,5 +31,16 @@ public class ArtistaRepositorio extends  AbstractRepositorio {
     protected Boolean filtraPorId(Object objeto, Long id) {
         Artista artista = (Artista) objeto;
         return artista.getId().equals(id);
+    }
+
+    public List<Artista> buscarPorNome(String nome) {
+        List<Artista> artistas = listar();
+        List<Artista> artistasEncontrados = null;
+        for (Artista artista : artistas) {
+            if (artista.getNome().contains(nome)) {
+                artistasEncontrados.add(artista);
+            }
+        }
+        return artistasEncontrados;
     }
 }

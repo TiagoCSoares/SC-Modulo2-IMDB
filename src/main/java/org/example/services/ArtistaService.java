@@ -9,7 +9,9 @@ import java.util.Set;
 
 public class ArtistaService {
 
+
     private ArtistaRepositorio artistaRepositorio;
+
 
     public ArtistaService(ArtistaRepositorio artistaRepositorio) {
         this.artistaRepositorio = artistaRepositorio;
@@ -25,6 +27,7 @@ public class ArtistaService {
         artistaRepositorio.gravar(artista);
     }
 
+
     public void atualizar(Artista artista) {
         if(artista == null) {
             throw new IllegalArgumentException("Artista não pode ser nulo");
@@ -38,6 +41,7 @@ public class ArtistaService {
         }
         artistaRepositorio.gravar(artista);
     }
+
 
     public void excluir(Artista artista) {
         if(artista == null) {
@@ -53,13 +57,23 @@ public class ArtistaService {
         artistaRepositorio.excluir(artista);
     }
 
+
     public void escreverArquivo() {
         List<Artista> artistas = listar();
         EscreverArquivos escrever = new EscreverArquivos();
         escrever.escreverArtistas(artistas);
     }
 
+
     public List listar() {
         return artistaRepositorio.listar();
+    }
+
+    public List<Artista> pesquisarPorNome(String nome) {
+        List<Artista> artistas = null;
+        if(nome != null) {
+            artistas = artistaRepositorio.buscarPorNome(nome);
+        }
+        return artistas;
     }
 }
