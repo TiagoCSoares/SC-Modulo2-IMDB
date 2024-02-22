@@ -34,10 +34,11 @@ public class ArtistaRepositorio extends  AbstractRepositorio {
     }
 
     public List<Artista> buscarPorNome(String nome) {
+        nome = nome.toUpperCase();
         List<Artista> artistas = listar();
         List<Artista> artistasEncontrados = null;
         for (Artista artista : artistas) {
-            if (artista.getNome().contains(nome)) {
+            if (artista.getNome().toUpperCase().contains(nome)) {
                 artistasEncontrados.add(artista);
             }
         }

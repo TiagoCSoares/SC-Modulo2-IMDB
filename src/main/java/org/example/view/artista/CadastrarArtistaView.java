@@ -25,17 +25,17 @@ public class CadastrarArtistaView {
 
         System.out.println("Informe o nome do artista:");
         String nome = scanner.nextLine();
-        VerificacoesArtistaDiretor verificacoes = new VerificacoesArtistaDiretor(artistaService);
 
-        List artistasCadastrados = verificacoes.verficarArtistaCadastrado(nome);
+        List artistasCadastrados = artistaService.pesquisarPorNome(nome);
         if(artistasCadastrados != null) {
             System.out.println("Artista já cadastrado");
             return;
+
         }
 
         System.out.println("Digite a data de nascimento do artista (DD/MM/YYYY):");
         String dataNascimento = scanner.nextLine();
-        dataNascimento = verificacoes.verificarDataNascimento(dataNascimento);
+        dataNascimento =  new VerificacoesArtistaDiretor(artistaService).verificarDataNascimento(dataNascimento);
 
         System.out.println("Digite o sexo do artista(M/F):");
         char sexo = scanner.nextLine().charAt(0);
@@ -46,9 +46,10 @@ public class CadastrarArtistaView {
             sexo = Character.toUpperCase(sexo);
         }
 
-        List<Filme> filmes = new VerificacoesFilme(filmeService).cadastrarFilmes();
+        //List<Filme> filmes = new VerificacoesFilme(filmeService).cadastrarFilmes();
 
-        Artista artista = new Artista(nome, dataNascimento, sexo, filmes);
+
+        Artista artista = new Artista(nome, dataNascimento, sexo, null);
         artistaService.criar(artista);
     }
 

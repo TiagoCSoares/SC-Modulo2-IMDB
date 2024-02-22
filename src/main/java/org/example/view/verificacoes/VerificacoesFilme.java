@@ -15,19 +15,6 @@ public class VerificacoesFilme {
         this.filmeService = filmeService;
     }
 
-
-    public List verificarFilmesCadastrados(String nome) {
-        List<Filme> filmes = filmeService.listar();
-        List filmesCadastrados = null;
-        for (Filme filme : filmes) {
-            if (filme.getNome().equals(nome)) {
-                filmesCadastrados.add(filme);
-            }
-        }
-        return filmesCadastrados;
-    }
-
-
     public List<Filme> cadastrarFilmes() {
         List<Filme> filmes = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -39,7 +26,7 @@ public class VerificacoesFilme {
         while(resposta == 'S') {
             System.out.println("Informe o nome do filme:");
             String nome = scanner.nextLine();
-            List filmesCadastrados = verificarFilmesCadastrados(nome);
+            List filmesCadastrados = filmeService.pesquisarPorNome(nome);
             if(filmesCadastrados != null) {
                 System.out.println("Filme já cadastrado");
                 System.out.println("Deseja cadastrar um novo filme?");
