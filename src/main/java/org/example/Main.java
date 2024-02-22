@@ -3,6 +3,8 @@ package org.example;
 import org.example.banco.BancoDeDados;
 import org.example.repositories.ArtistaRepositorio;
 import org.example.resources.IniciarArquivos;
+import org.example.resources.LerArquivos;
+import org.example.resources.LimparArquivos;
 import org.example.services.ArtistaService;
 import org.example.view.Menu;
 import org.example.view.artista.ListarArtistaView;
@@ -11,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         BancoDeDados bancoDeDados = new BancoDeDados();
-        IniciarArquivos.iniciarArquivos();
+        new IniciarArquivos().iniciarArquivos();
 
         ArtistaRepositorio artistaRepositorio = new ArtistaRepositorio(bancoDeDados);
         ArtistaService artistaService = new ArtistaService(artistaRepositorio);
@@ -21,7 +23,8 @@ public class Main {
         //FilmeService filmeService = new FilmeService(filmeRepositorio, musicoService, artistaService, diretorService);
 
         // TODO: Preencher os bancos com os arquivos já criados
-        //LerArquivos.preencherBancoArtistas(artistaService);
+        LerArquivos.preencherBancoArtistas(artistaService);
+        new LimparArquivos().limparArquivos();
 
         Menu principal = new Menu(artistaService/*, diretorService, filmeService*/);
         principal.execute();

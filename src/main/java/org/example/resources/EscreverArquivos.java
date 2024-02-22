@@ -28,7 +28,7 @@ public class EscreverArquivos {
         private void escreverDadosArtistas(String nomeArquivo, List<Artista> artistas) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
                 for (Artista artista : artistas) {
-                    writer.write(String.format("%-8d | %-45s | %-10s | %-2c", artista.getId(), artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
+                    writer.write(String.format("%-8d | %-30s | %-10s | %-2c", artista.getId(), artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
                     for(Filme filmes : artista.getFilmes()) {
                         writer.write(String.format(" | %-8d - %-45s - %-10s - %-2c", filmes.getId(), filmes.getNome(), filmes.getGenero(), filmes.getDataLancamento(), filmes.getDuracao()));
                     }

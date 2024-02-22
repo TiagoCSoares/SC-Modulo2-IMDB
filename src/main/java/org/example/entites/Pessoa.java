@@ -1,5 +1,8 @@
 package org.example.entites;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public abstract class Pessoa {
 
         private Long id;
@@ -43,5 +46,19 @@ public abstract class Pessoa {
 
         public void setSexo(char sexo) {
                 this.sexo = sexo;
+        }
+
+
+
+        public int calcularIdade() {
+                // Converter a string da data de nascimento para um objeto LocalDate
+                LocalDate dataNascimento = LocalDate.parse(this.dataNascimento);
+
+                // Calcular a diferença entre a data atual e a data de nascimento para obter a idade
+                LocalDate dataAtual = LocalDate.now();
+                Period periodo = Period.between(dataNascimento, dataAtual);
+
+                // Retornar a idade em anos
+                return periodo.getYears();
         }
 }

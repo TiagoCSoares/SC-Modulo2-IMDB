@@ -36,7 +36,7 @@ public class Menu extends AbstractMenuView{
         switch (option) {
             case 2 -> new ArtistaMenu(artistaService).execute();
             case 0 -> {
-                Set<Object> artistas = new HashSet<>(artistaService.listar());
+                //Set<Object> artistas = new HashSet<>(artistaService.listar());
                 artistaService.escreverArquivo();
                 System.exit(1);
                 }

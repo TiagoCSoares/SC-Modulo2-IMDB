@@ -38,11 +38,7 @@ public class BancoDeDados {
     }*/
 
     private Set<Object> colecaoDeObjetos(Class<?> clazz) {
-        Set<Object> objetos = OBJETOS.get(clazz);
-        if (objetos == null) {
-            objetos = new HashSet<>();
-            OBJETOS.put(clazz, objetos);
-        }
+        Set<Object> objetos = OBJETOS.computeIfAbsent(clazz, k -> new LinkedHashSet<>());
         return objetos;
     }
 

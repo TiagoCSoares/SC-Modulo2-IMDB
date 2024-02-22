@@ -11,8 +11,9 @@ public class ArtistaMenu extends AbstractMenuView {
     public ArtistaMenu(ArtistaService artistaService) {
         super(new String[]{
             "1 - Cadastrar Artista",
-            "2 - Listar Artistas",
+            "2 - Atualizar Artista",
             "3 - Excluir Artista",
+            "4 - Listar Artistas",
             "0 - Voltar"
         });
         this.artistaService = artistaService;
@@ -20,14 +21,14 @@ public class ArtistaMenu extends AbstractMenuView {
 
     @Override
     protected Boolean validOption(Integer option) {
-        return option >= 0 && option <= 3;
+        return option >= 0 && option <= 4;
     }
 
     @Override
     protected void executeOption(Integer option) {
         switch (option) {
-            case 1 -> new CadastrarArtistaView(this.artistaService).execute();
-            case 2 -> new ListarArtistaView(this.artistaService).execute();
+            case 1 -> new CadastrarArtistaView(artistaService).execute();
+            case 4 -> new ListarArtistaView(artistaService).execute();
             case 0 -> {return;}
             default -> System.out.println("Opcao não disponível");
         }

@@ -17,10 +17,10 @@ public class ListarArtistaView {
         List<Artista> artistas = artistaService.listar();
         for (Object obj: artistas) {
             Artista artista = (Artista) obj;
-            System.out.println(artista.getId());
-            System.out.println(artista.getNome());
-            System.out.println(artista.getDataNascimento());
-            System.out.println(artista.getSexo());
+            System.out.print(artista.getId());
+            System.out.print(artista.getNome());
+            System.out.print(artista.getDataNascimento());
+            System.out.print(artista.getSexo());
             for(Object filme: artista.getFilmes()) {
                 System.out.println(filme);
             }

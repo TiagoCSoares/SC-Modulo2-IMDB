@@ -4,15 +4,16 @@ import java.util.List;
 
 public class Filme {
 
-    private Long id;
-    private String nome;
-    private String genero;
-    private String dataLancamento;
-    private Float duracao;
-    private List<Artista> artistas;
-    private List<Diretor> diretores;
+    private  Long id;
+    private  String nome;
+    //private final String descricao;
+    private  String genero;
+    private  Integer dataLancamento;
+    private  Float duracao;
+    private  List<Artista> artistas;
+    private  List<Diretor> diretores;
 
-    public Filme(String nome, String genero, String dataLancamento, Float duracao, List<Artista> artistas, List<Diretor> diretores) {
+    public Filme(String nome, String genero, Integer dataLancamento, Float duracao, List<Artista> artistas, List<Diretor> diretores) {
         this.nome = nome;
         this.genero = genero;
         this.dataLancamento = dataLancamento;
@@ -45,11 +46,11 @@ public class Filme {
         this.genero = genero;
     }
 
-    public String getDataLancamento() {
+    public Integer getDataLancamento() {
         return dataLancamento;
     }
 
-    public void setDataLancamento(String dataLancamento) {
+    public void setDataLancamento(Integer dataLancamento) {
         this.dataLancamento = dataLancamento;
     }
 
