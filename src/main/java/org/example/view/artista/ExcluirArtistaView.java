@@ -17,7 +17,7 @@ public class ExcluirArtistaView {
     public void execute() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Digite o nome do arquivo que deseja excluir:");
+        System.out.println("Digite o nome do artista que deseja excluir:");
         String nome = scanner.nextLine();
 
         List<Artista> listaArtistas = artistaService.pesquisarPorNome(nome);
@@ -36,6 +36,9 @@ public class ExcluirArtistaView {
         }
         if(achouArtista == null) {
             System.out.println("Artista não encontrado");
+        } else {
+            System.out.println("Artista excluído com sucesso");
+            // TODO: Excluir o artista de todos os filmes que ele participou
         }
     }
 }

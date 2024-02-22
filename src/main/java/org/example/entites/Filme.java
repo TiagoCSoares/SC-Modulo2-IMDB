@@ -5,17 +5,18 @@ import java.util.List;
 public class Filme {
 
     private  Long id;
-    private  String nome;
-    //private final String descricao;
-    private  String genero;
-    private  Integer dataLancamento;
-    private  Float duracao;
+    private final String nome;
+    private final String descricao;
+    private final String genero;
+    private final Integer dataLancamento;
+    private final Integer duracao;
     private  List<Artista> artistas;
     private  List<Diretor> diretores;
 
-    public Filme(String nome, String genero, Integer dataLancamento, Float duracao, List<Artista> artistas, List<Diretor> diretores) {
+    public Filme(String nome, String genero, String descricao ,Integer dataLancamento, Integer duracao, List<Artista> artistas, List<Diretor> diretores) {
         this.nome = nome;
         this.genero = genero;
+        this.descricao = descricao;
         this.dataLancamento = dataLancamento;
         this.duracao = duracao;
         this.artistas = artistas;
@@ -34,33 +35,21 @@ public class Filme {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
 
     public Integer getDataLancamento() {
         return dataLancamento;
     }
 
-    public void setDataLancamento(Integer dataLancamento) {
-        this.dataLancamento = dataLancamento;
-    }
 
-    public Float getDuracao() {
+    public Integer getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(Float duracao) {
-        this.duracao = duracao;
-    }
 
     public List<Artista> getArtistas() {
         return artistas;
@@ -76,5 +65,9 @@ public class Filme {
 
     public void setDiretores(List<Diretor> diretores) {
         this.diretores = diretores;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }

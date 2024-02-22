@@ -17,15 +17,16 @@ public class ListarArtistaView {
     public void execute() {
         List<Artista> artistas = artistaService.listar();
         if (artistas != null) {
-            System.out.printf("%-8s | %-30s | %-10s | %-4s | %-8s - %-45s - %-10s\n",
-                    "ID", "Nome", "Data Nascimento", "Sexo", "ID Filme", "Nome Filme", "Genero");
+            System.out.printf("%-8s | %-30s | %-5s | %-4s | %-25s - %-15s\n",
+                    "ID", "Nome", "Idade", "Sexo", "Nome Filme", "Genero");
             for (Object obj : artistas) {
                 Artista artista = (Artista) obj;
-                System.out.printf("%-8d | %-30s | %-10s | %-4c", artista.getId(), artista.getNome(),
-                        artista.getDataNascimento(), artista.getSexo());
+                System.out.printf("%-8d | %-30s | %-5d | %-4c", artista.getId(), artista.getNome(),
+                        artista.calcularIdade(), artista.getSexo());
                 for (Filme filmes : artista.getFilmes()) {
-                    System.out.printf(" | %-8d - %-45s - %-10s", filmes.getId(), filmes.getNome(), filmes.getGenero());
+                    System.out.printf(" | %-25s - %-15s", filmes.getNome(), filmes.getGenero());
                 }
+                System.out.println();
             }
         } else {
             System.out.println("Nenhum artista cadastrado");

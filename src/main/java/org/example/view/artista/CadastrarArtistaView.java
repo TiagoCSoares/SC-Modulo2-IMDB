@@ -3,19 +3,21 @@ package org.example.view.artista;
 import org.example.entites.Artista;
 import org.example.entites.Filme;
 import org.example.services.ArtistaService;
+import org.example.services.FilmeService;
+import org.example.view.verificacoes.VerificacoesArtistaDiretor;
+import org.example.view.verificacoes.VerificacoesFilme;
 
-import java.io.IOException;
-import java.lang.module.ModuleFinder;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class CadastrarArtistaView {
 
     private ArtistaService artistaService;
+    private FilmeService filmeService;
 
-    public CadastrarArtistaView(ArtistaService artistaService) {
+    public CadastrarArtistaView(ArtistaService artistaService, FilmeService filmeService) {
         this.artistaService = artistaService;
+        this.filmeService = filmeService;
     }
 
     public void execute() {
@@ -23,11 +25,17 @@ public class CadastrarArtistaView {
 
         System.out.println("Informe o nome do artista:");
         String nome = scanner.nextLine();
-        // TODO: Validar se o nome já está cadastrado, se sim verificar as outras características do artista
+        VerificacoesArtistaDiretor verificacoes = new VerificacoesArtistaDiretor(artistaService);
+
+        List artistasCadastrados = verificacoes.verficarArtistaCadastrado(nome);
+        if(artistasCadastrados != null) {
+            System.out.println("Artista já cadastrado");
+            return;
+        }
 
         System.out.println("Digite a data de nascimento do artista (DD/MM/YYYY):");
         String dataNascimento = scanner.nextLine();
-        dataNascimento = verificarDataNascimento(dataNascimento);
+        dataNascimento = verificacoes.verificarDataNascimento(dataNascimento);
 
         System.out.println("Digite o sexo do artista(M/F):");
         char sexo = scanner.nextLine().charAt(0);
@@ -38,84 +46,12 @@ public class CadastrarArtistaView {
             sexo = Character.toUpperCase(sexo);
         }
 
-        List<Filme> filmes = cadastrarFilmes();
+        List<Filme> filmes = new VerificacoesFilme(filmeService).cadastrarFilmes();
 
         Artista artista = new Artista(nome, dataNascimento, sexo, filmes);
         artistaService.criar(artista);
     }
 
 
-
-    public String verificarDataNascimento(String dataNascimento) {
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            String[] elementos = dataNascimento.split("/");
-            if (elementos.length == 3) { // Verifica se a entrada contém três partes (dia, mês, ano)
-                try {
-                    int dia = Integer.parseInt(elementos[0]);
-                    int mes = Integer.parseInt(elementos[1]);
-                    int ano = Integer.parseInt(elementos[2]);
-
-                    // Validar se a data é válida
-                    if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && ano >= 1900) {
-                        break; // Sai do loop se a data for válida
-                    } else {
-                        System.out.println("Data de nascimento inválida. Por favor, digite novamente:");
-                        dataNascimento = scanner.nextLine();
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Formato inválido. Certifique-se de digitar a data no formato DD/MM/YYYY:");
-                    dataNascimento = scanner.nextLine();
-                }
-            } else {
-                System.out.println("Formato inválido. Certifique-se de digitar a data no formato DD/MM/YYYY:");
-                dataNascimento = scanner.nextLine();
-            }
-        }
-        return dataNascimento;
-    }
-
-
-
-
-    public List<Filme> cadastrarFilmes() {
-        List<Filme> filmes = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Deseja cadastrar um filme para o artista? (S/N)");
-        char resposta = scanner.nextLine().charAt(0);
-        resposta = Character.toUpperCase(resposta);
-
-        while(resposta == 'S') {
-            System.out.println("Informe o nome do filme:");
-            String nome = scanner.nextLine();
-
-            System.out.println("Informe o gênero do filme:");
-            String genero = scanner.nextLine();
-
-            System.out.println("Informe o ano de lançamento do filme:");
-            while (!scanner.hasNextInt()) {
-                System.out.print("Digite um valor válido para o ano de lançamento: ");
-                scanner.next(); // Consome a entrada inválida
-            }
-            Integer anoLancamento = scanner.nextInt();
-
-
-            System.out.println("Informe a duração do filme:");
-            while (!scanner.hasNextFloat()) {
-                System.out.print("Digite um valor válido para a duração do filme: ");
-                scanner.next(); // Consome a entrada inválida
-            }
-            float duracao = scanner.nextFloat();
-
-            Filme filme = new Filme(nome, genero, anoLancamento, duracao, null, null);
-            filmes.add(filme);
-
-            System.out.println("Deseja cadastrar um filme para o artista? (S/N)");
-            resposta = scanner.nextLine().charAt(0);
-            resposta = Character.toUpperCase(resposta);
-        }
-        return filmes;
-    }
 
 }

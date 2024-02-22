@@ -3,6 +3,7 @@ package org.example.view;
 import org.example.entites.Diretor;
 import org.example.resources.EscreverArquivos;
 import org.example.services.ArtistaService;
+import org.example.services.FilmeService;
 import org.example.view.artista.ArtistaMenu;
 import org.example.view.artista.ListarArtistaView;
 
@@ -14,9 +15,9 @@ public class Menu extends AbstractMenuView{
 
     private ArtistaService artistaService;
     //private DiretorService diretorService;
-    //private FilmeService filmeService;
+    private FilmeService filmeService;
 
-    public Menu(ArtistaService artistaService) {
+    public Menu(ArtistaService artistaService, FilmeService filmeService) {
         super(new String[]{
                 "1 - Filmes",
                 "2 - Artistas",
@@ -24,6 +25,7 @@ public class Menu extends AbstractMenuView{
                 "0 - Sair"
         });
         this.artistaService = artistaService;
+        this.filmeService = filmeService;
     }
 
     @Override
@@ -34,7 +36,7 @@ public class Menu extends AbstractMenuView{
     @Override
     protected void executeOption(Integer option) {
         switch (option) {
-            case 2 -> new ArtistaMenu(artistaService).execute();
+            case 2 -> new ArtistaMenu(artistaService, filmeService).execute();
             case 0 -> {
                 //Set<Object> artistas = new HashSet<>(artistaService.listar());
                 artistaService.escreverArquivo();

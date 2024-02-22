@@ -1,14 +1,17 @@
 package org.example.view.artista;
 
 import org.example.entites.Artista;
+import org.example.entites.Filme;
 import org.example.services.ArtistaService;
+import org.example.services.FilmeService;
 import org.example.view.AbstractMenuView;
 
 public class ArtistaMenu extends AbstractMenuView {
 
     private ArtistaService artistaService;
+    private FilmeService filmeService;
 
-    public ArtistaMenu(ArtistaService artistaService) {
+    public ArtistaMenu(ArtistaService artistaService, FilmeService filmeService) {
         super(new String[]{
             "1 - Cadastrar Artista",
             "2 - Atualizar Artista",
@@ -17,6 +20,7 @@ public class ArtistaMenu extends AbstractMenuView {
             "0 - Voltar"
         });
         this.artistaService = artistaService;
+        this.filmeService = filmeService;
     }
 
     @Override
@@ -27,9 +31,9 @@ public class ArtistaMenu extends AbstractMenuView {
     @Override
     protected void executeOption(Integer option) {
         switch (option) {
-            case 1 -> new CadastrarArtistaView(artistaService).execute();
-            case 3 -> new ExcluirArtistaView(artistaService).execute();
-            case 4 -> new ListarArtistaView(artistaService).execute();
+            case 1 -> new CadastrarArtistaView(artistaService, filmeService).execute();
+            case 3 -> new ExcluirArtistaView(artistaService, filmeService).execute();
+            case 4 -> new ListarArtistaView(artistaService, filmeService).execute();
             case 0 -> {return;}
             default -> System.out.println("Opcao não disponível");
         }
