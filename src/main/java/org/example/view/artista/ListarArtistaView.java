@@ -23,10 +23,15 @@ public class ListarArtistaView {
                 Artista artista = (Artista) obj;
                 System.out.printf("%-8d | %-30s | %-5d | %-4c", artista.getId(), artista.getNome(),
                         artista.calcularIdade(), artista.getSexo());
-                for (Filme filmes : artista.getFilmes()) {
-                    System.out.printf(" | %-25s - %-15s", filmes.getNome(), filmes.getGenero());
+
+                if(artista.getFilmes() != null) {
+                    for (Filme filmes : artista.getFilmes()) {
+                        if (filmes != null) {
+                            System.out.printf(" | %-25s - %-15s", filmes.getNome(), filmes.getGenero());
+                        }
+                    }
+                    System.out.println();
                 }
-                System.out.println();
             }
         } else {
             System.out.println("Nenhum artista cadastrado");

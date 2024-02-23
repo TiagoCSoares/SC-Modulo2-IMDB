@@ -6,6 +6,7 @@ import java.io.IOException;
 public class IniciarArquivos {
 
     public void iniciarArquivos() {
+        // Caso a pasta arquivos não exista cria a nova Pasta
         novaPasta("src/main/java/org/example/arquivos");
 
         novoArquivo("src/main/java/org/example/arquivos/artistas.txt");

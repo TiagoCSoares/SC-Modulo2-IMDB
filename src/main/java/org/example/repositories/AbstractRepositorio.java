@@ -1,6 +1,8 @@
 package org.example.repositories;
 
 import org.example.banco.BancoDeDados;
+import org.example.entites.Diretor;
+import org.example.entites.Filme;
 
 import java.util.Collections;
 import java.util.List;
@@ -43,4 +45,10 @@ public abstract class AbstractRepositorio {
     protected abstract Boolean filtraPorId(Object objeto, Long id);
 
     public abstract List buscarPorNome(String nome);
+
+    public abstract void associarFilme(Object object, Filme filme);
+
+    public abstract void excluirFilme(Filme filme);
+
+
 }

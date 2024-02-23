@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class ArtistaRepositorio extends  AbstractRepositorio {
+public class ArtistaRepositorio extends AbstractRepositorio {
 
     public ArtistaRepositorio(BancoDeDados bancoDeDados) {
         super(bancoDeDados);
@@ -41,28 +41,35 @@ public class ArtistaRepositorio extends  AbstractRepositorio {
         List<Artista> artistas = listar();
         List<Artista> artistasEncontrados = new ArrayList<>();
 
-        for (Artista artista : artistas) {
-            if (artista.getNome().toUpperCase().contains(nome)) {
-                artistasEncontrados.add(artista);
+        if (artistas != null) {
+            for (Artista artista : artistas) {
+                if (artista.getNome().toUpperCase().contains(nome)) {
+                    artistasEncontrados.add(artista);
+                }
             }
         }
-        if(artistasEncontrados.isEmpty()){
+        if (artistasEncontrados.isEmpty()) {
             return null;
         }
         return artistasEncontrados;
     }
 
-    public void associarFilme(Artista artista, Filme filme) {
+    @Override
+    public void associarFilme(Object objeto, Filme filme) {
+        Artista artista = (Artista) objeto;
         artista.associarFilme(filme);
     }
 
+    @Override
     public void excluirFilme(Filme filme) {
         List<Artista> artistas = listar();
-        for (Artista artista : artistas) {
-            if(artista.getFilmes() == null){
-                continue;
-            } else if(artista.getFilmes().contains(filme)) {
-                artista.desassociarFilme(filme);
+
+        // Se artistas for null não há filmes para serem excluídos, exclui a chance de ter erro
+        if (artistas != null) {
+            for (Artista artista : artistas) {
+                if (artista.getFilmes().contains(filme) && (artista.getFilmes() != null)) {
+                    artista.desassociarFilme(filme);
+                }
             }
         }
     }

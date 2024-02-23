@@ -8,6 +8,7 @@ import org.example.services.FilmeService;
 import org.example.view.artista.ArtistaMenu;
 import org.example.view.artista.ListarArtistaView;
 import org.example.view.diretor.DiretorMenu;
+import org.example.view.filme.FilmeMenu;
 
 import java.nio.file.DirectoryStream;
 import java.util.HashSet;
@@ -39,6 +40,7 @@ public class Menu extends AbstractMenuView{
     @Override
     protected void executeOption(Integer option) {
         switch (option) {
+            case 1 -> new FilmeMenu(filmeService, artistaService, diretorService).execute();
             case 2 -> new ArtistaMenu(artistaService, filmeService).execute();
             case 3 -> new DiretorMenu(diretorService, filmeService).execute();
             case 0 -> {

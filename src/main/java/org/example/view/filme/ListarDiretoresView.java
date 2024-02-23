@@ -25,34 +25,38 @@ public class ListarDiretoresView {
         List<Filme> filmes = filmeService.pesquisarPorNome(nome);
         Filme achouFilme = null;
 
-        for(Filme filme : filmes) {
-            System.out.printf("%-25s | %-15s\n",
-                    "Nome do Filme", "Gênero");
-            System.out.printf("%-25s | %-15s\n",
-                    filme.getNome(), filme.getGenero());
+        if (filmes != null) {
+            for (Filme filme : filmes) {
+                System.out.printf("%-25s | %-15s\n",
+                        "Nome do Filme", "Gênero");
+                System.out.printf("%-25s | %-15s\n",
+                        filme.getNome(), filme.getGenero());
 
-            char resposta = scanner.nextLine().charAt(0);
-            resposta = Character.toUpperCase(resposta);
+                char resposta = scanner.nextLine().charAt(0);
+                resposta = Character.toUpperCase(resposta);
 
-            if( resposta == 'S') {
-                achouFilme = filme;
-                break;
+                if (resposta == 'S') {
+                    achouFilme = filme;
+                    break;
+                }
             }
-        }
 
-        if(achouFilme == null) {
-            System.out.println("O filme não foi encontrado!");
-        } else if(achouFilme.getDiretores().isEmpty()) {
-            System.out.println("O filme não possui diretores cadastrados!");
+            if (achouFilme == null) {
+                System.out.println("O filme não foi encontrado!");
+            } else if (achouFilme.getDiretores().isEmpty()) {
+                System.out.println("O filme não possui diretores cadastrados!");
+            } else {
+                System.out.printf("%-25s | %-5s | %-4s\n",
+                        "Nome", "Idade", "Sexo");
+
+                for (Diretor diretor : achouFilme.getDiretores()) {
+                    System.out.printf("%-25s | %-5d | %-4c\n",
+                            diretor.getNome(), diretor.calcularIdade(), diretor.getSexo());
+                }
+                System.out.println();
+            }
         } else {
-            System.out.printf("%-25s | %-5s | %-4s\n",
-                    "Nome", "Idade", "Sexo");
-
-            for(Diretor diretor : achouFilme.getDiretores()) {
-                System.out.printf("%-25s | %-5d | %-4c\n",
-                        diretor.getNome(), diretor.calcularIdade(), diretor.getSexo());
-            }
-            System.out.println();
+            System.out.println("Não há filmes cadastrados!");
         }
     }
 }

@@ -25,19 +25,23 @@ public class ExcluirArtistaView {
 
         List<Artista> listaArtistas = artistaService.pesquisarPorNome(nome);
         Artista achouArtista = null;
-
-        for(Artista artista : listaArtistas) {
-            System.out.print(artista.getNome() + "|" + artista.getDataNascimento());
-            System.out.println("Esse é o artista desejado?(S/N)");
-            char resposta = scanner.nextLine().charAt(0);
-            resposta = Character.toUpperCase(resposta);
-            if (resposta == 'S') {
-                achouArtista = artista;
-                artistaService.excluir(achouArtista);
-                break;
+        if (listaArtistas != null) {
+            for (Artista artista : listaArtistas) {
+                System.out.print(artista.getNome() + "|" + artista.getDataNascimento());
+                System.out.println("Esse é o artista desejado?(S/N)");
+                char resposta = scanner.nextLine().charAt(0);
+                resposta = Character.toUpperCase(resposta);
+                if (resposta == 'S') {
+                    achouArtista = artista;
+                    artistaService.excluir(achouArtista);
+                    break;
+                }
             }
+        } else {
+            System.out.println("Não há artistas cadastrados!");
         }
-        if(achouArtista == null) {
+
+        if (achouArtista == null) {
             System.out.println("Artista não encontrado");
         } else {
             System.out.println("Artista excluído com sucesso");

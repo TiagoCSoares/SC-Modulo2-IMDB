@@ -64,9 +64,12 @@ public abstract class Pessoa {
 
 
         public int calcularIdade() {
-                // Converter a string da data de nascimento para um objeto LocalDate
+
+                // A data de nascimento está no formato dd/mm/yyyy é preciso trocar '/' por '-' para utilizar o LocalDate
                 String dataNascimentoFormatada = dataNascimento.replace("/", "-");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+                // Converter a string da data de nascimento para um objeto LocalDate
                 LocalDate dataNascimentoLocalDate = LocalDate.parse(dataNascimentoFormatada, formatter);
 
                 // Calcular a diferença entre a data atual e a data de nascimento para obter a idade

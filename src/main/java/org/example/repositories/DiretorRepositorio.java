@@ -8,7 +8,7 @@ import org.example.entites.Filme;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DiretorRepositorio extends AbstractRepositorio{
+public class DiretorRepositorio extends AbstractRepositorio {
 
     public DiretorRepositorio(BancoDeDados bancoDeDados) {
         super(bancoDeDados);
@@ -40,28 +40,35 @@ public class DiretorRepositorio extends AbstractRepositorio{
         List<Diretor> diretores = listar();
         List<Diretor> diretoresEncontrados = new ArrayList<>();
 
-        for (Diretor diretor : diretores) {
-            if (diretor.getNome().toUpperCase().contains(nome)) {
-                diretoresEncontrados.add(diretor);
+        if (diretores != null) {
+            for (Diretor diretor : diretores) {
+                if (diretor.getNome().toUpperCase().contains(nome)) {
+                    diretoresEncontrados.add(diretor);
+                }
             }
         }
-        if(diretoresEncontrados.isEmpty()){
+        if (diretoresEncontrados.isEmpty()) {
             return null;
         }
         return diretoresEncontrados;
     }
 
-    public void associarFilme(Diretor diretor, Filme filme) {
+    @Override
+    public void associarFilme(Object objeto, Filme filme) {
+        Diretor diretor = (Diretor) objeto;
         diretor.associarFilme(filme);
     }
 
+
+    @Override
     public void excluirFilme(Filme filme) {
         List<Diretor> diretores = listar();
-        for (Diretor diretor : diretores) {
-            if(diretor.getFilmes() == null){
-                continue;
-            } else if(diretor.getFilmes().contains(filme)) {
-                diretor.desassociarFilme(filme);
+
+        if (diretores != null) {
+            for (Diretor diretor : diretores) {
+                if ((diretor.getFilmes() == null) && (diretor.getFilmes().contains(filme))) {
+                    diretor.desassociarFilme(filme);
+                }
             }
         }
     }

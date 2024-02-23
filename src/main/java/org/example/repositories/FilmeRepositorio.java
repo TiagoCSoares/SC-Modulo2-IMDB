@@ -8,7 +8,7 @@ import org.example.entites.Filme;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilmeRepositorio extends AbstractRepositorio{
+public class FilmeRepositorio extends AbstractRepositorio {
 
     public FilmeRepositorio(BancoDeDados bancoDeDados) {
         super(bancoDeDados);
@@ -17,6 +17,15 @@ public class FilmeRepositorio extends AbstractRepositorio{
     @Override
     protected Class classeModelo() {
         return Filme.class;
+    }
+
+    @Override
+    public void gravar(Object objeto) {
+        Filme filme = (Filme) objeto;
+        if (filme.getId() == null) {
+            filme.setId(bancoDeDados.proximoId());
+        }
+        super.gravar(objeto);
     }
 
     @Override
@@ -30,16 +39,28 @@ public class FilmeRepositorio extends AbstractRepositorio{
         nome = nome.toUpperCase();
         List<Filme> filmes = listar();
         List<Filme> filmesEncontrados = new ArrayList<>();
-        for (Filme filme : filmes) {
-            if (filme.getNome().toUpperCase().contains(nome)) {
-                filmesEncontrados.add(filme);
+
+        if (filmes != null) {
+            for (Filme filme : filmes) {
+                if (filme.getNome().toUpperCase().contains(nome)) {
+                    filmesEncontrados.add(filme);
+                }
             }
         }
-        if(filmesEncontrados.isEmpty()){
+        if (filmesEncontrados.isEmpty()) {
             return null;
         }
         return filmesEncontrados;
     }
+
+    @Override
+    public void associarFilme(Object object, Filme filme) {
+    }
+
+    @Override
+    public void excluirFilme(Filme filme) {
+    }
+
 
     public void associarArtista(Artista artista, Filme filme) {
         filme.associarArtista(artista);
@@ -51,22 +72,28 @@ public class FilmeRepositorio extends AbstractRepositorio{
 
     public void excluirArtista(Artista artista) {
         List<Filme> filmes = listar();
-        for (Filme filme : filmes) {
-            if(filme.getArtistas() == null){
-                continue;
-            } else if(filme.getArtistas().contains(artista)) {
-                filme.desassociarArtista(artista);
+
+        if (filmes != null) {
+            for (Filme filme : filmes) {
+                if (filme.getArtistas() == null) {
+                    continue;
+                } else if (filme.getArtistas().contains(artista)) {
+                    filme.desassociarArtista(artista);
+                }
             }
         }
     }
 
     public void excluirDiretor(Diretor diretor) {
         List<Filme> filmes = listar();
-        for (Filme filme : filmes) {
-            if(filme.getDiretores() == null){
-                continue;
-            } else if(filme.getDiretores().contains(diretor)) {
-                filme.desassociarDiretor(diretor);
+
+        if (filmes != null) {
+            for (Filme filme : filmes) {
+                if (filme.getDiretores() == null) {
+                    continue;
+                } else if (filme.getDiretores().contains(diretor)) {
+                    filme.desassociarDiretor(diretor);
+                }
             }
         }
     }
