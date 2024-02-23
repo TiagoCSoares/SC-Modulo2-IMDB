@@ -37,7 +37,7 @@ public class DiretorMenu extends AbstractMenuView {
             case 2 -> new ExcluirDiretorView(diretorService, filmeService).execute();
             case 3 -> new ListarDiretorView(diretorService).execute();
             case 4 -> new AssociarFilmeView(diretorService, filmeService).execute();
-            case 5 -> new ListarFilmesView(diretorService, filmeService).execute();
+            case 5 -> new ListarFilmesView(diretorService).execute();
 
             case 0 -> {return;}
             default -> System.out.println("Opcao não disponível");

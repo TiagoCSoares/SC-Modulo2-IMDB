@@ -17,17 +17,18 @@ public class ListarArtistaView {
     public void execute() {
         List<Artista> artistas = artistaService.listar();
         if (!artistas.isEmpty()) {
-            System.out.printf("%-8s | %-30s | %-5s | %-4s | %-25s - %-15s\n",
+            System.out.printf("%-8s | %-25s | %-5s | %-4s | %-25s - %-15s\n",
                     "ID", "Nome", "Idade", "Sexo", "Nome Filme", "Genero");
             for (Object obj : artistas) {
                 Artista artista = (Artista) obj;
-                System.out.printf("%-8d | %-30s | %-5d | %-4c", artista.getId(), artista.getNome(),
+                System.out.printf("%-8d | %-25s | %-5d | %-4c", artista.getId(), artista.getNome(),
                         artista.calcularIdade(), artista.getSexo());
 
                 if(artista.getFilmes() != null) {
+                    System.out.print(" | ");
                     for (Filme filmes : artista.getFilmes()) {
                         if (filmes != null) {
-                            System.out.printf(" | %-25s - %-15s", filmes.getNome(), filmes.getGenero());
+                            System.out.printf(" %-25s - %-15s", filmes.getNome(), filmes.getGenero());
                         }
                     }
                     System.out.println();

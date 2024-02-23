@@ -12,6 +12,7 @@ import org.example.view.filme.FilmeMenu;
 
 import java.nio.file.DirectoryStream;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
 
 public class Menu extends AbstractMenuView{
@@ -49,6 +50,10 @@ public class Menu extends AbstractMenuView{
                 filmeService.escreverArquivo();
                 diretorService.escreverArquivo();
                 System.exit(1);
+
+                // Instanciando um scanner para garantir que o System.in será encerrado
+                Scanner scanner = new Scanner(System.in);
+                scanner.close();
                 }
 
             default -> System.out.println("Opcao não disponível");

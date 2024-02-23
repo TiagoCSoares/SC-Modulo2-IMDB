@@ -25,6 +25,7 @@ public class ExcluirArtistaView {
 
         List<Artista> listaArtistas = artistaService.pesquisarPorNome(nome);
         Artista achouArtista = null;
+
         if (listaArtistas != null) {
             for (Artista artista : listaArtistas) {
                 System.out.print(artista.getNome() + "|" + artista.getDataNascimento());
@@ -44,9 +45,9 @@ public class ExcluirArtistaView {
         if (achouArtista == null) {
             System.out.println("Artista não encontrado");
         } else {
-            System.out.println("Artista excluído com sucesso");
             // Excluir o artista de todos os filmes que ele participou
             filmeService.excluirArtista(achouArtista);
+            System.out.println("Artista excluído com sucesso");
         }
     }
 }

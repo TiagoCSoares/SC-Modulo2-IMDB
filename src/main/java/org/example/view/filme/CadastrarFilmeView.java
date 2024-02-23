@@ -36,13 +36,22 @@ public class CadastrarFilmeView {
         System.out.println("Digite a descrição do filme:");
         String descricao = scanner.nextLine();
 
-        System.out.println("Digite a data de lançamento do filme:");
-        Integer dataLancamento = scanner.nextInt();
+        System.out.println("Informe o ano de lançamento do filme:");
+        while (!scanner.hasNextInt()) {
+            System.out.print("Digite um valor válido para o ano de lançamento: ");
+            scanner.next(); // Consome a entrada inválida
+        }
+        Integer anoLancamento = scanner.nextInt();
 
-        System.out.println("Digite a duração do filme:");
+        System.out.println("Informe a duração do filme (em minutos):");
+        while (!scanner.hasNextInt()) {
+            System.out.print("Digite um valor válido para a duração do filme: ");
+            scanner.next(); // Consome a entrada inválida
+        }
         Integer duracao = scanner.nextInt();
+        scanner.nextLine();
 
-        Filme filme = new Filme(nome, genero, descricao, dataLancamento, duracao, null, null);
+        Filme filme = new Filme(nome, genero, descricao, anoLancamento, duracao, null, null);
         filmeService.criar(filme);
     }
 }

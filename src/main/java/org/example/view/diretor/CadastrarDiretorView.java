@@ -27,7 +27,6 @@ public class CadastrarDiretorView {
         if(diretoresCadastrados != null) {
             System.out.println("Diretor já cadastrado");
             return;
-
         }
 
         System.out.println("Digite a data de nascimento do diretor (DD/MM/YYYY):");

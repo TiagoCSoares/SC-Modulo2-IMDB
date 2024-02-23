@@ -43,14 +43,14 @@ public class ListarDiretoresView {
 
             if (achouFilme == null) {
                 System.out.println("O filme não foi encontrado!");
-            } else if (achouFilme.getDiretores().isEmpty()) {
+            } else if (achouFilme.getDiretores().isEmpty() || achouFilme.getDiretores().isEmpty()) {
                 System.out.println("O filme não possui diretores cadastrados!");
             } else {
-                System.out.printf("%-25s | %-5s | %-4s\n",
+                System.out.printf("| %-25s | %-5s | %-4s\n",
                         "Nome", "Idade", "Sexo");
 
                 for (Diretor diretor : achouFilme.getDiretores()) {
-                    System.out.printf("%-25s | %-5d | %-4c\n",
+                    System.out.printf("| %-25s | %-5d | %-4c\n",
                             diretor.getNome(), diretor.calcularIdade(), diretor.getSexo());
                 }
                 System.out.println();

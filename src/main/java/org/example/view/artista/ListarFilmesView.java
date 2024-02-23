@@ -42,7 +42,7 @@ public class ListarFilmesView {
 
         if (achouArtista == null) {
             System.out.println("Artista não encontrado");
-        } else if (achouArtista.getFilmes().isEmpty()) {
+        } else if (achouArtista.getFilmes().isEmpty() || achouArtista.getFilmes() == null) {
             System.out.println("Artista não participou de nenhum filme");
         } else {
             System.out.printf("%-8s | %-30s | %-5s | %-4s \n",
@@ -51,12 +51,13 @@ public class ListarFilmesView {
                     achouArtista.getId(), achouArtista.getNome(),
                     achouArtista.calcularIdade(), achouArtista.getSexo());
 
-            System.out.printf("%-25s | %-15s | %-50s | %-10s | %-7s | \n",
-                    "Nome Filme", "Genero", "Descrição", "Lancamento", "Duração");
+            System.out.printf("%-25s | %-15s | %-10s | %-7s | %-100s\n",
+                    "Nome Filme", "Genero", "Lancamento", "Duração, Descrição");
+
             for (Filme filmes : achouArtista.getFilmes()) {
-                System.out.printf("%-25s | %-15s | %-50s | %-10s | %-7d | \n",
-                        filmes.getNome(), filmes.getGenero(), filmes.getDescricao(),
-                        filmes.getDataLancamento(), filmes.getDuracao());
+                System.out.printf("%-25s | %-15s | %-10s | %-7d | %-100s\n",
+                        filmes.getNome(), filmes.getGenero(), filmes.getDataLancamento(),
+                        filmes.getDuracao(), filmes.getDescricao());
             }
             System.out.println();
         }

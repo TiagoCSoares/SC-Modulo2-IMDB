@@ -37,7 +37,7 @@ public class ListarArtistasView {
             }
             if(achouFilme == null) {
                 System.out.println("O Filme não foi encontrado!");
-            } else if (achouFilme.getArtistas().isEmpty()) {
+            } else if (achouFilme.getArtistas().isEmpty() || achouFilme.getArtistas().isEmpty()) {
                 System.out.println("Esse filme não tem artistas cadastrados!");
             } else {
                 System.out.printf("%-25s | %-5s | %-4s\n",

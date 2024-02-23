@@ -18,16 +18,24 @@ public class ListarDiretorView {
     public void execute() {
         List<Diretor> diretores = diretorService.listar();
         if (!diretores.isEmpty()) {
-            System.out.printf("%-8s | %-30s | %-5s | %-4s | %-25s - %-15s\n",
+            System.out.printf("%-8s | %-25s | %-5s | %-4s | %-25s - %-15s\n",
                     "ID", "Nome", "Idade", "Sexo", "Nome Filme", "Genero");
+
             for (Object obj : diretores) {
                 Diretor diretor = (Diretor) obj;
-                System.out.printf("%-8d | %-30s | %-5d | %-4c", diretor.getId(), diretor.getNome(),
+                System.out.printf("%-8d | %-25s | %-5d | %-4c",
+                        diretor.getId(), diretor.getNome(),
                         diretor.calcularIdade(), diretor.getSexo());
-                for (Filme filmes : diretor.getFilmes()) {
-                    System.out.printf(" | %-25s - %-15s", filmes.getNome(), filmes.getGenero());
+
+                if (diretor.getFilmes() != null) {
+                    System.out.print(" | ");
+                    for (Filme filmes : diretor.getFilmes()) {
+                        if (filmes != null) {
+                            System.out.printf(" %-25s - %-15s", filmes.getNome(), filmes.getGenero());
+                        }
+                    }
+                    System.out.println();
                 }
-                System.out.println();
             }
         } else {
             System.out.println("Nenhum diretor cadastrado");

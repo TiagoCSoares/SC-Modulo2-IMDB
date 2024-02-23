@@ -27,23 +27,24 @@ public class ExcluirFilmeView {
         List<Filme> listaFilmes = filmeService.pesquisarPorNome(nome);
         Filme achouFlme = null;
 
-        for(Filme filme : listaFilmes) {
-            System.out.print(filme.getNome() + "|" + filme.getGenero());
-            System.out.println("Esse é o filme desejado?(S/N)");
-            char resposta = scanner.nextLine().charAt(0);
-            resposta = Character.toUpperCase(resposta);
-            if (resposta == 'S') {
-                achouFlme = filme;
-                filmeService.excluir(achouFlme);
-                break;
+        if(listaFilmes != null) {
+            for (Filme filme : listaFilmes) {
+                System.out.print(filme.getNome() + "|" + filme.getGenero());
+                System.out.println("Esse é o filme desejado?(S/N)");
+                char resposta = scanner.nextLine().charAt(0);
+                resposta = Character.toUpperCase(resposta);
+                if (resposta == 'S') {
+                    achouFlme = filme;
+                    filmeService.excluir(achouFlme);
+                    break;
+                }
             }
         }
         if(achouFlme == null) {
             System.out.println("Filme não encontrado");
         } else {
-            System.out.println("Filme excluído com sucesso");
-            // Excluir o filme da lista dos artistas
             artistaService.excluirFilme(achouFlme);
+            System.out.println("Filme excluído com sucesso");
         }
     }
 }

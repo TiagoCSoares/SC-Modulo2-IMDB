@@ -36,7 +36,7 @@ public class AssociarFilmeView {
 
         List filmes = filmeService.pesquisarPorNome(nomeFilme);
         if(filmes == null) {
-            System.out.println("Filme não encontrado, cadastre o filme antes de associar ao artista");
+            System.out.println("Filme não encontrado, cadastre o filme antes de associar ao diretor");
             return;
         }
 

@@ -18,13 +18,13 @@ public class ListarFilmeView {
     public void execute() {
         List<Filme> filmes = filmeService.listar();
         if (!filmes.isEmpty()) {
-            System.out.printf("%-8s | %-25s | %-15s | %-50s | %-18s - %-7s\n",
-                    "ID", "Nome", "Genero", "Descrição", "Ano de Lançamento", "Duração");
+            System.out.printf("%-8s | %-25s | %-15s | %-18s | %-7s | %-100s\n",
+                    "ID", "Nome", "Genero", "Ano de Lançamento", "Duração", "Descrição");
             for (Object obj : filmes) {
                 Filme filme = (Filme) obj;
-                System.out.printf("%-8d | %-25s | %-15s | %-50s | %-18d - %-7d\n",
-                        filme.getId(), filme.getNome(), filme.getGenero(),
-                        filme.getDescricao(), filme.getDataLancamento(), filme.getDuracao());
+                System.out.printf("%-8d | %-25s | %-15s | %-18d | %-7d | %-100s\n",
+                        filme.getId(), filme.getNome(), filme.getGenero(), filme.getDataLancamento(),
+                        filme.getDuracao(), filme.getDescricao());
                 System.out.println();
             }
         } else {
