@@ -59,4 +59,13 @@ public class FilmeService {
         return filmes;
     }
 
+
+    public void associarArtista(Artista artista, Filme filme) {
+        filmeRepositorio.associarFilme(artista, filme);
+    }
+
+    public void excluirArtista(Artista artista) {
+        filmeRepositorio.excluirArtista(artista);
+    }
+
 }

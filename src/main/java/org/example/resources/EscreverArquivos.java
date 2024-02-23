@@ -30,7 +30,7 @@ public class EscreverArquivos {
                 for (Artista artista : artistas) {
                     writer.write(String.format("%-8d | %-30s | %-10s | %-2c", artista.getId(), artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
                     for(Filme filmes : artista.getFilmes()) {
-                        writer.write(String.format(" | %-8d - %-45s - %-10s", filmes.getId(), filmes.getNome(), filmes.getGenero()));
+                        writer.write(String.format(" | %-8d | %-25s - %-15s - %-10s", filmes.getId(), filmes.getNome(), filmes.getGenero(), filmes.getDataLancamento()));
                     }
                     writer.newLine();
                 }

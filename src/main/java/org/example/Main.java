@@ -24,9 +24,11 @@ public class Main {
         FilmeRepositorio filmeRepositorio = new FilmeRepositorio(bancoDeDados);
         FilmeService filmeService = new FilmeService(filmeRepositorio);
 
-        // TODO: Preencher os bancos com os arquivos já criados
+        // Preencher os bancos com os arquivos já criados
         LerArquivos.preencherBancoArtistas(artistaService);
         new LimparArquivos().limparArquivos();
+
+        // TODO: Criar as associações existentes nos arquivos
 
         Menu principal = new Menu(artistaService, filmeService);
         principal.execute();

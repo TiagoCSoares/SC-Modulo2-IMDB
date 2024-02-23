@@ -2,6 +2,7 @@ package org.example.view.artista;
 
 import org.example.entites.Artista;
 import org.example.services.ArtistaService;
+import org.example.services.FilmeService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -9,9 +10,11 @@ import java.util.Scanner;
 public class ExcluirArtistaView {
 
     private ArtistaService artistaService;
+    private FilmeService filmeService;
 
-    public ExcluirArtistaView(ArtistaService artistaService) {
+    public ExcluirArtistaView(ArtistaService artistaService, FilmeService filmeService) {
         this.artistaService = artistaService;
+        this.filmeService = filmeService;
     }
 
     public void execute() {
@@ -38,7 +41,8 @@ public class ExcluirArtistaView {
             System.out.println("Artista não encontrado");
         } else {
             System.out.println("Artista excluído com sucesso");
-            // TODO: Excluir o artista de todos os filmes que ele participou
+            // Excluir o artista de todos os filmes que ele participou
+            filmeService.excluirArtista(achouArtista);
         }
     }
 }

@@ -19,4 +19,8 @@ public class Artista extends Pessoa{
     public void setFilmes(List<Filme> filmes) {
         this.filmes = filmes;
     }
+
+    public void associarFilme(Filme filme) {
+        filmes.add(filme);
+    }
 }

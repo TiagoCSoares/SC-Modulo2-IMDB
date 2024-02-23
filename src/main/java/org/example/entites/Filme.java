@@ -70,4 +70,13 @@ public class Filme {
     public String getDescricao() {
         return descricao;
     }
+
+
+    public void associarArtista(Artista artista) {
+        artistas.add(artista);
+    }
+
+    public void desassociarArtista(Artista artista) {
+        artistas.remove(artista);
+    }
 }

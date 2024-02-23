@@ -2,6 +2,7 @@ package org.example.repositories;
 
 import org.example.banco.BancoDeDados;
 import org.example.entites.Artista;
+import org.example.entites.Filme;
 import org.example.resources.EscreverArquivos;
 
 import java.util.List;
@@ -43,5 +44,9 @@ public class ArtistaRepositorio extends  AbstractRepositorio {
             }
         }
         return artistasEncontrados;
+    }
+
+    public void associarFilme(Artista artista, Filme filme) {
+        artista.associarFilme(filme);
     }
 }

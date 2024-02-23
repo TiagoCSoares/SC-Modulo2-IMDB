@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.entites.Artista;
+import org.example.entites.Filme;
 import org.example.repositories.ArtistaRepositorio;
 import org.example.resources.EscreverArquivos;
 
@@ -75,5 +76,10 @@ public class ArtistaService {
             artistas = artistaRepositorio.buscarPorNome(nome);
         }
         return artistas;
+    }
+
+    public void associarFilme(Artista artista, Filme filme) {
+
+        artistaRepositorio.associarFilme(artista, filme);
     }
 }

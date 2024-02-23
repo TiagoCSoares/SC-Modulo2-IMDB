@@ -15,9 +15,8 @@ public class CadastrarArtistaView {
     private ArtistaService artistaService;
     private FilmeService filmeService;
 
-    public CadastrarArtistaView(ArtistaService artistaService, FilmeService filmeService) {
+    public CadastrarArtistaView(ArtistaService artistaService) {
         this.artistaService = artistaService;
-        this.filmeService = filmeService;
     }
 
     public void execute() {
@@ -46,13 +45,8 @@ public class CadastrarArtistaView {
             sexo = Character.toUpperCase(sexo);
         }
 
-        //List<Filme> filmes = new VerificacoesFilme(filmeService).cadastrarFilmes();
-
 
         Artista artista = new Artista(nome, dataNascimento, sexo, null);
         artistaService.criar(artista);
     }
-
-
-
 }

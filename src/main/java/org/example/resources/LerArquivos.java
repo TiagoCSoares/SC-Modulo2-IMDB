@@ -56,6 +56,9 @@ public class LerArquivos {
                         }
                         Artista artista = new Artista(nome, dataNascimento, sexo, filmes);
                         artistaService.criar(artista);
+                        // TODO: Criar arquivo da Associação de filmes ao artista
+                        // o arquivo terá em cada linha um artista e um filme
+                        // artistaService.associarFilme(artista, filmes);
                     }
                 }
             } catch (IOException e) {
