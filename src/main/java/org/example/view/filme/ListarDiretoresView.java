@@ -43,7 +43,7 @@ public class ListarDiretoresView {
 
             if (achouFilme == null) {
                 System.out.println("O filme não foi encontrado!");
-            } else if (achouFilme.getDiretores().isEmpty() || achouFilme.getDiretores().isEmpty()) {
+            } else if (achouFilme.getDiretores().isEmpty() || achouFilme.getDiretores() == null) {
                 System.out.println("O filme não possui diretores cadastrados!");
             } else {
                 System.out.printf("| %-25s | %-5s | %-4s\n",

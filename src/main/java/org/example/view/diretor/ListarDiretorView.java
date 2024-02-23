@@ -28,10 +28,9 @@ public class ListarDiretorView {
                         diretor.calcularIdade(), diretor.getSexo());
 
                 if (diretor.getFilmes() != null) {
-                    System.out.print(" | ");
                     for (Filme filmes : diretor.getFilmes()) {
                         if (filmes != null) {
-                            System.out.printf(" %-25s - %-15s", filmes.getNome(), filmes.getGenero());
+                            System.out.printf(" | %-25s - %-15s", filmes.getNome(), filmes.getGenero());
                         }
                     }
                     System.out.println();

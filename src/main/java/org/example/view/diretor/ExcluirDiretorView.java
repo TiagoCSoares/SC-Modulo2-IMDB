@@ -28,23 +28,22 @@ public class ExcluirDiretorView {
 
         if(listaDiretores != null) {
             for (Diretor diretor : listaDiretores) {
-                System.out.print(diretor.getNome() + "|" + diretor.getDataNascimento());
+                System.out.println(diretor.getNome() + "|" + diretor.getDataNascimento());
                 System.out.println("Esse é o diretor desejado?(S/N)");
                 char resposta = scanner.nextLine().charAt(0);
                 resposta = Character.toUpperCase(resposta);
                 if (resposta == 'S') {
                     achouDiretor = diretor;
                     diretorService.excluir(achouDiretor);
+                    filmeService.excluirDiretor(achouDiretor);
                     break;
                 }
             }
-        }
+        }else {
+                System.out.println("Não há diretores cadastrados!");
+            }
         if(achouDiretor == null) {
             System.out.println("Diretor não encontrado");
-        } else {
-            // Excluir o diretor de todos os filmes que ele participou
-            filmeService.excluirDiretor(achouDiretor);
-            System.out.println("Diretor excluído com sucesso");
         }
     }
 }

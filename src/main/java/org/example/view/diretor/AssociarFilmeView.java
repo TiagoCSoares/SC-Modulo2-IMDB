@@ -7,6 +7,7 @@ import org.example.services.ArtistaService;
 import org.example.services.DiretorService;
 import org.example.services.FilmeService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,8 +44,8 @@ public class AssociarFilmeView {
         Diretor diretor = (Diretor) diretores.get(0);
         Filme filme = (Filme) filmes.get(0);
         // O artista não precisa  receber a lista dos outros artistas, evitar loop infinito
-        filme.setArtistas(null);
-        filme.setDiretores(null);
+        filme.setArtistas(new ArrayList<>());
+        filme.setDiretores(new ArrayList<>());
         diretorService.associarFilme(diretor, filme);
         filmeService.associarDiretor(diretor, filme);
     }

@@ -1,34 +1,27 @@
 package org.example.view.filme;
 
-import org.example.entites.Artista;
 import org.example.entites.Filme;
-import org.example.services.ArtistaService;
-import org.example.services.DiretorService;
 import org.example.services.FilmeService;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class ExcluirFilmeView {
+public class BuscarFilmeView {
 
-    private ArtistaService artistaService;
-    private DiretorService diretorService;
     private FilmeService filmeService;
 
-    public ExcluirFilmeView(ArtistaService artistaService, DiretorService diretorService ,FilmeService filmeService) {
-        this.artistaService = artistaService;
-        this.diretorService = diretorService;
+    public BuscarFilmeView(FilmeService filmeService) {
         this.filmeService = filmeService;
     }
 
     public void execute() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Digite o nome do filme que deseja excluir:");
+        System.out.println("Qual filme você deseja buscar?:");
         String nome = scanner.nextLine();
 
         List<Filme> listaFilmes = filmeService.pesquisarPorNome(nome);
-        Filme achouFilme = null;
+        Boolean achouFilme = false;
 
         if(listaFilmes != null) {
             for (Filme filme : listaFilmes) {
@@ -37,15 +30,18 @@ public class ExcluirFilmeView {
                 char resposta = scanner.nextLine().charAt(0);
                 resposta = Character.toUpperCase(resposta);
                 if (resposta == 'S') {
-                    achouFilme = filme;
-                    filmeService.excluir(achouFilme);
-                    artistaService.excluirFilme(achouFilme);
-                    diretorService.excluirFilme(achouFilme);
+                    achouFilme = true;
+                    System.out.printf("%-8s | %-25s | %-15s | %-18s | %-7s | %-100s\n",
+                            "ID", "Nome", "Genero", "Ano de Lançamento", "Duração", "Descrição");
+                    System.out.printf("%-8d | %-25s | %-15s | %-18d | %-7d | %-100s\n",
+                            filme.getId(), filme.getNome(), filme.getGenero(), filme.getDataLancamento(),
+                            filme.getDuracao(), filme.getDescricao());
+                    System.out.println();
                     break;
                 }
             }
         }
-        if(achouFilme == null) {
+        if(!achouFilme) {
             System.out.println("Filme não encontrado");
         }
     }

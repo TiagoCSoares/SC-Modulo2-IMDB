@@ -18,16 +18,18 @@ public class Main {
     public static void main(String[] args) {
 
         // Inicializa o Banco
-        BancoDeDados bancoDeDados = new BancoDeDados();
+        BancoDeDados bancoDeDadosArtista = new BancoDeDados();
+        BancoDeDados bancoDeDadosDiretor = new BancoDeDados();
+        BancoDeDados bancoDeDadosFilme = new BancoDeDados();
         // Inicializa os arquivos txt
         new IniciarArquivos().iniciarArquivos();
 
         // Inicializa os repositories e services
-        ArtistaRepositorio artistaRepositorio = new ArtistaRepositorio(bancoDeDados);
+        ArtistaRepositorio artistaRepositorio = new ArtistaRepositorio(bancoDeDadosArtista);
         ArtistaService artistaService = new ArtistaService(artistaRepositorio);
-        DiretorRepositorio diretorRepositorio = new DiretorRepositorio(bancoDeDados);
+        DiretorRepositorio diretorRepositorio = new DiretorRepositorio(bancoDeDadosDiretor);
         DiretorService diretorService = new DiretorService(diretorRepositorio);
-        FilmeRepositorio filmeRepositorio = new FilmeRepositorio(bancoDeDados);
+        FilmeRepositorio filmeRepositorio = new FilmeRepositorio(bancoDeDadosFilme);
         FilmeService filmeService = new FilmeService(filmeRepositorio);
 
         // Preencher os bancos com os arquivos já criados

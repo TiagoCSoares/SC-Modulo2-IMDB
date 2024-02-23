@@ -35,6 +35,7 @@ public class ExcluirArtistaView {
                 if (resposta == 'S') {
                     achouArtista = artista;
                     artistaService.excluir(achouArtista);
+                    filmeService.excluirArtista(achouArtista);
                     break;
                 }
             }
@@ -44,10 +45,6 @@ public class ExcluirArtistaView {
 
         if (achouArtista == null) {
             System.out.println("Artista não encontrado");
-        } else {
-            // Excluir o artista de todos os filmes que ele participou
-            filmeService.excluirArtista(achouArtista);
-            System.out.println("Artista excluído com sucesso");
         }
     }
 }

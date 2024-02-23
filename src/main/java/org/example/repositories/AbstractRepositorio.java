@@ -1,7 +1,6 @@
 package org.example.repositories;
 
 import org.example.banco.BancoDeDados;
-import org.example.entites.Diretor;
 import org.example.entites.Filme;
 
 import java.util.Collections;

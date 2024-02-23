@@ -25,10 +25,9 @@ public class ListarArtistaView {
                         artista.calcularIdade(), artista.getSexo());
 
                 if(artista.getFilmes() != null) {
-                    System.out.print(" | ");
                     for (Filme filmes : artista.getFilmes()) {
                         if (filmes != null) {
-                            System.out.printf(" %-25s - %-15s", filmes.getNome(), filmes.getGenero());
+                            System.out.printf(" | %-25s - %-15s", filmes.getNome(), filmes.getGenero());
                         }
                     }
                     System.out.println();

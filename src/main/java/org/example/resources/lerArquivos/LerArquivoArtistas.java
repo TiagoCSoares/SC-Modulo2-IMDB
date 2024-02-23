@@ -55,9 +55,9 @@ public class LerArquivoArtistas extends LerArquivoAbstract {
         String[] filme = elementos.split("\\s*-\\s*");
         String nomeFilme = filme[0].trim();
         String genero = filme[1].trim();
-        String descricao = filme[2].trim();
-        Integer dataLancamento = Integer.parseInt(filme[3].trim());
-        Integer duracao = Integer.parseInt(filme[4].trim());
+        Integer dataLancamento = Integer.parseInt(filme[2].trim());
+        Integer duracao = Integer.parseInt(filme[3].trim());
+        String descricao = filme[4].trim();
         return new Filme(nomeFilme, genero, descricao, dataLancamento, duracao, null, null);
     }
 }

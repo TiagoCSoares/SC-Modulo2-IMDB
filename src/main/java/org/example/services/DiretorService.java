@@ -20,10 +20,10 @@ public class DiretorService {
 
     public void criar(Diretor diretor) {
         if(diretor == null) {
-            throw new IllegalArgumentException("Artista não pode ser nulo");
+            throw new IllegalArgumentException("Diretor não pode ser nulo");
         }
         if (diretor.getNome() == null || diretor.getNome().trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome do artista não pode ser nulo ou vazio");
+            throw new IllegalArgumentException("Nome do diretor não pode ser nulo ou vazio");
         }
         diretorRepositorio.gravar(diretor);
     }
@@ -32,14 +32,14 @@ public class DiretorService {
 
     public void excluir(Diretor diretor) {
         if(diretor == null) {
-            throw new IllegalArgumentException("Artista não pode ser nulo");
+            throw new IllegalArgumentException("Diretor não pode ser nulo");
         }
         if(diretor.getId() == null) {
-            throw new IllegalArgumentException("Id do artista não pode ser nulo");
+            throw new IllegalArgumentException("Id do diretor não pode ser nulo");
         }
         Diretor artistaSalvo = (Diretor) diretorRepositorio.buscarPorId(diretor.getId());
         if(artistaSalvo == null) {
-            throw new IllegalArgumentException("Artista não encontrado");
+            throw new IllegalArgumentException("Diretor não encontrado");
         }
         diretorRepositorio.excluir(diretor);
     }

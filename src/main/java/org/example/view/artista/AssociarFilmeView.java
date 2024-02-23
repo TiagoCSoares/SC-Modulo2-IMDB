@@ -5,6 +5,7 @@ import org.example.entites.Filme;
 import org.example.services.ArtistaService;
 import org.example.services.FilmeService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,8 +24,20 @@ public class AssociarFilmeView {
         System.out.println("Informe o nome do artista:");
         String nome = scanner.nextLine();
 
-        List artistas = artistaService.pesquisarPorNome(nome);
-        if(artistas == null) {
+        List<Artista> artistas = artistaService.pesquisarPorNome(nome);
+        Artista artistaEncontrado = null;
+        if (artistas != null && !artistas.isEmpty()) {
+            for (Artista artista : artistas) {
+                System.out.print(artista.getNome() + "|" + artista.getDataNascimento());
+                System.out.println("Esse é o artista desejado?(S/N)");
+                char resposta = scanner.nextLine().charAt(0);
+                resposta = Character.toUpperCase(resposta);
+                if (resposta == 'S') {
+                    artistaEncontrado = artista;
+                    break;
+                }
+            }
+        } else {
             System.out.println("Artista não encontrado, cadastre o artista antes de associar ao filme");
             return;
         }
@@ -32,18 +45,29 @@ public class AssociarFilmeView {
         System.out.println("Informe o nome do filme:");
         String nomeFilme = scanner.nextLine();
 
-        List filmes = filmeService.pesquisarPorNome(nomeFilme);
-        if(filmes == null) {
+        List<Filme> filmes = filmeService.pesquisarPorNome(nomeFilme);
+        Filme filmeEncontrado = null;
+        if (filmes != null && !filmes.isEmpty()){
+            for (Filme filme : filmes) {
+                System.out.print(filme.getNome() + "|" + filme.getGenero());
+                System.out.println("Esse é o artista desejado?(S/N)");
+                char resposta = scanner.nextLine().charAt(0);
+                resposta = Character.toUpperCase(resposta);
+                if (resposta == 'S') {
+                    filmeEncontrado = filme;
+                    break;
+                }
+            }
+        } else  {
             System.out.println("Filme não encontrado, cadastre o filme antes de associar ao artista");
             return;
         }
 
-        Artista artista = (Artista) artistas.get(0);
-        Filme filme = (Filme) filmes.get(0);
+
         // O artista não precisa  receber a lista dos outros artistas, evitar loop infinito
-        filme.setArtistas(null);
-        filme.setDiretores(null);
-        artistaService.associarFilme(artista, filme);
-        filmeService.associarArtista(artista, filme);
+        filmeEncontrado.setArtistas(new ArrayList<>());
+        filmeEncontrado.setDiretores(new ArrayList<>());
+        artistaService.associarFilme(artistaEncontrado, filmeEncontrado);
+        filmeService.associarArtista(artistaEncontrado, filmeEncontrado);
     }
 }

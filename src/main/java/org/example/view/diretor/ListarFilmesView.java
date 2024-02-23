@@ -44,7 +44,7 @@ public class ListarFilmesView {
         } else if (achouDiretor.getFilmes().isEmpty() || achouDiretor.getFilmes().isEmpty()) {
             System.out.println("Diretor não participou de nenhum filme");
         } else {
-            System.out.printf("%-8s | %-30s | %-5s | %-4s \n",
+            System.out.printf("%-8s | %-30s | %-5s | %-4s\n",
                     "ID", "Nome", "Idade", "Sexo");
             System.out.printf("%-8d | %-30s | %-5d | %-4c\n",
                     achouDiretor.getId(), achouDiretor.getNome(),

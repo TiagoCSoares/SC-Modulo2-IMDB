@@ -45,14 +45,14 @@ public class ListarFilmesView {
         } else if (achouArtista.getFilmes().isEmpty() || achouArtista.getFilmes() == null) {
             System.out.println("Artista não participou de nenhum filme");
         } else {
-            System.out.printf("%-8s | %-30s | %-5s | %-4s \n",
+            System.out.printf("%-8s | %-30s | %-5s | %-4s\n",
                     "ID", "Nome", "Idade", "Sexo");
             System.out.printf("%-8d | %-30s | %-5d | %-4c\n",
                     achouArtista.getId(), achouArtista.getNome(),
                     achouArtista.calcularIdade(), achouArtista.getSexo());
 
             System.out.printf("%-25s | %-15s | %-10s | %-7s | %-100s\n",
-                    "Nome Filme", "Genero", "Lancamento", "Duração, Descrição");
+                    "Nome Filme", "Genero", "Lancamento", "Duração", "Descrição");
 
             for (Filme filmes : achouArtista.getFilmes()) {
                 System.out.printf("%-25s | %-15s | %-10s | %-7d | %-100s\n",

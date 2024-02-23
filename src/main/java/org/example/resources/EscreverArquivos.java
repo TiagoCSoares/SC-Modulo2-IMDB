@@ -14,45 +14,26 @@ import java.util.Set;
 
 public class EscreverArquivos {
 
-        public void escreverArtistas(List<Artista> artistas) {
-            escreverDadosArtistas("src/main/java/org/example/arquivos/artistas.txt", artistas);
-        }
+    public void escreverArtistas(List<Artista> artistas) {
+        escreverDadosArtistas("src/main/java/org/example/arquivos/artistas.txt", artistas);
+    }
 
-        public void escreverDiretores(List<Diretor> diretores) {
-            escreverDadosDiretores("src/main/java/org/example/arquivos/diretores.txt", diretores);
-        }
+    public void escreverDiretores(List<Diretor> diretores) {
+        escreverDadosDiretores("src/main/java/org/example/arquivos/diretores.txt", diretores);
+    }
 
-        public void escreverFilmes(List<Filme> filmes) {
-            escreverDadosFilmes("src/main/java/org/example/arquivos/filmes.txt", filmes);
-        }
+    public void escreverFilmes(List<Filme> filmes) {
+        escreverDadosFilmes("src/main/java/org/example/arquivos/filmes.txt", filmes);
+    }
 
-        private void escreverDadosArtistas(String nomeArquivo, List<Artista> artistas) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
-                for (Artista artista : artistas) {
-                    writer.write(String.format("%-8d | %-25s | %-10s | %-2c", artista.getId(), artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
-                    for(Filme filmes : artista.getFilmes()) {
-                        writer.write(String.format(" | %-25s - %-15s - %-4d - %-4d - %-100s" ,
-                                filmes.getNome(), filmes.getGenero(), filmes.getDataLancamento(),
-                                filmes.getDuracao(), filmes.getDescricao()));
-                    }
-                    writer.newLine();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-    private void escreverDadosFilmes(String nomeArquivo, List<Filme> filmes) {
+    private void escreverDadosArtistas(String nomeArquivo, List<Artista> artistas) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
-            for (Filme filme : filmes) {
-                writer.write(String.format("%-8d | %-25s | %-15s | %-100s | %-4d | %-3d | ", filme.getId(),
-                        filme.getNome(), filme.getGenero(), filme.getDescricao(), filme.getDataLancamento(),
-                        filme.getDuracao()));
-                for(Artista artista : filme.getArtistas()) {
-                    writer.write(String.format(" | %-30s - %-10s - %-2c", artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
-                }
-                for (Diretor diretor : filme.getDiretores()) {
-                    writer.write(String.format(" \\ %-30s - %-10s - %-2c", diretor.getNome(), diretor.getDataNascimento(), diretor.getSexo()));
+            for (Artista artista : artistas) {
+                writer.write(String.format("%-8d | %-25s | %-10s | %-2c", artista.getId(), artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
+                for (Filme filmes : artista.getFilmes()) {
+                    writer.write(String.format(" | %-25s - %-15s - %-4d - %-4d - %-100s",
+                            filmes.getNome(), filmes.getGenero(), filmes.getDataLancamento(),
+                            filmes.getDuracao(), filmes.getDescricao()));
                 }
                 writer.newLine();
             }
@@ -67,10 +48,34 @@ public class EscreverArquivos {
             for (Diretor diretor : diretores) {
                 writer.write(String.format("%-8d | %-25s | %-10s | %-2c", diretor.getId(),
                         diretor.getNome(), diretor.getDataNascimento(), diretor.getSexo()));
-                for(Filme filmes : diretor.getFilmes()) {
-                    writer.write(String.format(" | %-25s - %-15s - %-4d - %-4d - %-100s" ,
+                for (Filme filmes : diretor.getFilmes()) {
+                    writer.write(String.format(" | %-25s - %-15s - %-4d - %-4d - %-100s",
                             filmes.getNome(), filmes.getGenero(), filmes.getDataLancamento(),
                             filmes.getDuracao(), filmes.getDescricao()));
+                }
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void escreverDadosFilmes(String nomeArquivo, List<Filme> filmes) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            for (Filme filme : filmes) {
+                writer.write(String.format("%-8d | %-25s | %-15s | %-4d | %-3d | %-100s", filme.getId(),
+                        filme.getNome(), filme.getGenero(), filme.getDataLancamento(),
+                        filme.getDuracao(), filme.getDescricao()));
+
+                if (filme.getArtistas() != null && !filme.getArtistas().isEmpty()) {
+                    for (Artista artista : filme.getArtistas()) {
+                        writer.write(String.format(" | %-30s - %-10s - %-2c", artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
+                    }
+                }
+                if (filme.getDiretores() != null && !filme.getDiretores().isEmpty()) {
+                    for (Diretor diretor : filme.getDiretores()) {
+                        writer.write(String.format("lakaka \\ %-30s - %-10s - %-2c", diretor.getNome(), diretor.getDataNascimento(), diretor.getSexo()));
+                    }
                 }
                 writer.newLine();
             }

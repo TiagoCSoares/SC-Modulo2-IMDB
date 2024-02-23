@@ -1,5 +1,6 @@
 package org.example.entites;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Filme {
@@ -19,8 +20,8 @@ public class Filme {
         this.descricao = descricao;
         this.anoLancamento = anoLancamento;
         this.duracao = duracao;
-        this.artistas = artistas;
-        this.diretores = diretores;
+        this.artistas = artistas != null ? artistas : new ArrayList<>(); // Inicialize a lista de artistas
+        this.diretores = diretores != null ? diretores : new ArrayList<>(); // Inicialize a lista de diretores
     }
 
     public Long getId() {

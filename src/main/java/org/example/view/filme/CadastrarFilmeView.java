@@ -6,6 +6,7 @@ import org.example.services.ArtistaService;
 import org.example.services.FilmeService;
 import org.example.view.verificacoes.VerificarDataNascimento;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,7 +52,7 @@ public class CadastrarFilmeView {
         Integer duracao = scanner.nextInt();
         scanner.nextLine();
 
-        Filme filme = new Filme(nome, genero, descricao, anoLancamento, duracao, null, null);
+        Filme filme = new Filme(nome, genero, descricao, anoLancamento, duracao, new ArrayList<>(), new ArrayList<>());
         filmeService.criar(filme);
     }
 }

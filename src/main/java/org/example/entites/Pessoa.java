@@ -3,6 +3,7 @@ package org.example.entites;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Pessoa {
@@ -18,7 +19,7 @@ public abstract class Pessoa {
             this.nome = nome;
             this.dataNascimento = dataNascimento;
             this.sexo = sexo;
-            this.filmes = filmes;
+            this.filmes = filmes != null ? filmes : new ArrayList<>();
         }
 
         public Long getId() {

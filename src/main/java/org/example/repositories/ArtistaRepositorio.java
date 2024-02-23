@@ -3,11 +3,10 @@ package org.example.repositories;
 import org.example.banco.BancoDeDados;
 import org.example.entites.Artista;
 import org.example.entites.Filme;
-import org.example.resources.EscreverArquivos;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 public class ArtistaRepositorio extends AbstractRepositorio {
 
@@ -67,7 +66,7 @@ public class ArtistaRepositorio extends AbstractRepositorio {
         // Se artistas for null não há filmes para serem excluídos, exclui a chance de ter erro
         if (artistas != null) {
             for (Artista artista : artistas) {
-                if (artista.getFilmes().contains(filme) && (artista.getFilmes() != null)) {
+                if ((artista.getFilmes() != null) && (artista.getFilmes().contains(filme))) {
                     artista.desassociarFilme(filme);
                 }
             }
