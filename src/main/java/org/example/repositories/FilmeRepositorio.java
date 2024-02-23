@@ -2,6 +2,7 @@ package org.example.repositories;
 
 import org.example.banco.BancoDeDados;
 import org.example.entites.Artista;
+import org.example.entites.Diretor;
 import org.example.entites.Filme;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class FilmeRepositorio extends AbstractRepositorio{
         return filme.getId().equals(id);
     }
 
+    @Override
     public List<Filme> buscarPorNome(String nome) {
         nome = nome.toUpperCase();
         List<Filme> filmes = listar();
@@ -39,13 +41,13 @@ public class FilmeRepositorio extends AbstractRepositorio{
         return filmesEncontrados;
     }
 
-    public void associarFilme(Artista artista, Filme filme) {
+    public void associarArtista(Artista artista, Filme filme) {
         filme.associarArtista(artista);
     }
 
-    /*public void associarDiretor(Artista diretor, Filme filme) {
+    public void associarDiretor(Diretor diretor, Filme filme) {
         filme.associarDiretor(diretor);
-    }*/
+    }
 
     public void excluirArtista(Artista artista) {
         List<Filme> filmes = listar();
@@ -54,6 +56,17 @@ public class FilmeRepositorio extends AbstractRepositorio{
                 continue;
             } else if(filme.getArtistas().contains(artista)) {
                 filme.desassociarArtista(artista);
+            }
+        }
+    }
+
+    public void excluirDiretor(Diretor diretor) {
+        List<Filme> filmes = listar();
+        for (Filme filme : filmes) {
+            if(filme.getDiretores() == null){
+                continue;
+            } else if(filme.getDiretores().contains(diretor)) {
+                filme.desassociarDiretor(diretor);
             }
         }
     }

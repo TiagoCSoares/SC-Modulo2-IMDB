@@ -3,9 +3,11 @@ package org.example.view;
 import org.example.entites.Diretor;
 import org.example.resources.EscreverArquivos;
 import org.example.services.ArtistaService;
+import org.example.services.DiretorService;
 import org.example.services.FilmeService;
 import org.example.view.artista.ArtistaMenu;
 import org.example.view.artista.ListarArtistaView;
+import org.example.view.diretor.DiretorMenu;
 
 import java.nio.file.DirectoryStream;
 import java.util.HashSet;
@@ -14,10 +16,10 @@ import java.util.Set;
 public class Menu extends AbstractMenuView{
 
     private ArtistaService artistaService;
-    //private DiretorService diretorService;
+    private DiretorService diretorService;
     private FilmeService filmeService;
 
-    public Menu(ArtistaService artistaService, FilmeService filmeService) {
+    public Menu(ArtistaService artistaService, DiretorService diretorService ,FilmeService filmeService) {
         super(new String[]{
                 "1 - Filmes",
                 "2 - Artistas",
@@ -25,6 +27,7 @@ public class Menu extends AbstractMenuView{
                 "0 - Sair\n"
         });
         this.artistaService = artistaService;
+        this.diretorService = diretorService;
         this.filmeService = filmeService;
     }
 
@@ -37,9 +40,12 @@ public class Menu extends AbstractMenuView{
     protected void executeOption(Integer option) {
         switch (option) {
             case 2 -> new ArtistaMenu(artistaService, filmeService).execute();
+            case 3 -> new DiretorMenu(diretorService, filmeService).execute();
             case 0 -> {
                 //Set<Object> artistas = new HashSet<>(artistaService.listar());
                 artistaService.escreverArquivo();
+                filmeService.escreverArquivo();
+                diretorService.escreverArquivo();
                 System.exit(1);
                 }
 

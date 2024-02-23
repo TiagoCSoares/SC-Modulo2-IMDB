@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.entites.Artista;
+import org.example.entites.Diretor;
 import org.example.entites.Filme;
 import org.example.repositories.FilmeRepositorio;
 import org.example.resources.EscreverArquivos;
@@ -61,11 +62,19 @@ public class FilmeService {
 
 
     public void associarArtista(Artista artista, Filme filme) {
-        filmeRepositorio.associarFilme(artista, filme);
+        filmeRepositorio.associarArtista(artista, filme);
     }
 
     public void excluirArtista(Artista artista) {
         filmeRepositorio.excluirArtista(artista);
+    }
+
+    public void associarDiretor(Diretor diretor, Filme filme) {
+        filmeRepositorio.associarDiretor(diretor, filme);
+    }
+
+    public void excluirDiretor(Diretor diretor) {
+        filmeRepositorio.excluirDiretor(diretor);
     }
 
 }

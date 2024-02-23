@@ -1,6 +1,7 @@
 package org.example.resources;
 
 import org.example.entites.Artista;
+import org.example.entites.Diretor;
 import org.example.entites.Filme;
 import org.example.repositories.ArtistaRepositorio;
 
@@ -17,9 +18,9 @@ public class EscreverArquivos {
             escreverDadosArtistas("src/main/java/org/example/arquivos/artistas.txt", artistas);
         }
 
-        /*public void escreverDiretores(Set<Object> diretores) {
+        public void escreverDiretores(List<Diretor> diretores) {
             escreverDadosDiretores("src/main/java/org/example/arquivos/diretores.txt", diretores);
-        }*/
+        }
 
         public void escreverFilmes(List<Filme> filmes) {
             escreverDadosFilmes("src/main/java/org/example/arquivos/filmes.txt", filmes);
@@ -50,9 +51,28 @@ public class EscreverArquivos {
                 for(Artista artista : filme.getArtistas()) {
                     writer.write(String.format(" | %-30s - %-10s - %-2c", artista.getNome(), artista.getDataNascimento(), artista.getSexo()));
                 }
+                writer.write(" |" );
                 /*for (Diretor diretor : filmes.getDiretor()) {
-                    writer.write(String.format(" | %-8d - %-45s - %-10s", diretor.getId(), diretor.getNome()));
+                    writer.write(String.format(" \ %-8d - %-45s - %-10s", diretor.getId(), diretor.getNome()));
                 }*/
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void escreverDadosDiretores(String nomeArquivo, List<Diretor> diretores) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
+            for (Diretor diretor : diretores) {
+                writer.write(String.format("%-8d | %-30s | %-10s | %-2c", diretor.getId(),
+                        diretor.getNome(), diretor.getDataNascimento(), diretor.getSexo()));
+                for(Filme filmes : diretor.getFilmes()) {
+                    writer.write(String.format(" | %-25s - %-15s - %-50s - %-4d - %4d" ,
+                            filmes.getNome(), filmes.getGenero(), filmes.getDescricao(),
+                            filmes.getDataLancamento(), filmes.getDuracao()));
+                }
                 writer.newLine();
             }
         } catch (IOException e) {

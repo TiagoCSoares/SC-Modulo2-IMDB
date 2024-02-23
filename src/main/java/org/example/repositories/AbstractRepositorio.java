@@ -41,4 +41,6 @@ public abstract class AbstractRepositorio {
     protected abstract Class classeModelo();
 
     protected abstract Boolean filtraPorId(Object objeto, Long id);
+
+    public abstract List buscarPorNome(String nome);
 }

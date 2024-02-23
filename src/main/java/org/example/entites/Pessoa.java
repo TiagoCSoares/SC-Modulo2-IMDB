@@ -3,6 +3,7 @@ package org.example.entites;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public abstract class Pessoa {
 
@@ -11,10 +12,13 @@ public abstract class Pessoa {
         private String dataNascimento;
         private char sexo;
 
-        public Pessoa(String nome, String dataNascimento, char sexo) {
+        private List<Filme> filmes;
+
+        public Pessoa(String nome, String dataNascimento, char sexo, List<Filme> filmes) {
             this.nome = nome;
             this.dataNascimento = dataNascimento;
             this.sexo = sexo;
+            this.filmes = filmes;
         }
 
         public Long getId() {
@@ -49,6 +53,14 @@ public abstract class Pessoa {
                 this.sexo = sexo;
         }
 
+        public List<Filme> getFilmes() {
+                return filmes;
+        }
+
+        public void setFilmes(List<Filme> filmes) {
+                this.filmes = filmes;
+        }
+
 
 
         public int calcularIdade() {
@@ -63,5 +75,13 @@ public abstract class Pessoa {
 
                 // Retornar a idade em anos
                 return periodo.getYears();
+        }
+
+        public void associarFilme(Filme filme) {
+                filmes.add(filme);
+        }
+
+        public void desassociarFilme(Filme filme) {
+                filmes.remove(filme);
         }
 }

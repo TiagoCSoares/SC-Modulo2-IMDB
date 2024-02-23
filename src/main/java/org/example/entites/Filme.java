@@ -79,4 +79,12 @@ public class Filme {
     public void desassociarArtista(Artista artista) {
         artistas.remove(artista);
     }
+
+    public void associarDiretor(Diretor diretor) {
+        diretores.add(diretor);
+    }
+
+    public void desassociarDiretor(Diretor diretor) {
+        diretores.remove(diretor);
+    }
 }

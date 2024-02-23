@@ -1,4 +1,4 @@
-package org.example.resources;
+package org.example.resources.lerArquivos;
 
 import org.example.entites.Artista;
 import org.example.entites.Filme;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LerArquivos {
+public class LerArquivoArtistas {
 
     public static Boolean lerArtistasTxt() {
 

@@ -29,20 +29,6 @@ public class ArtistaService {
     }
 
 
-    public void atualizar(Artista artista) {
-        if(artista == null) {
-            throw new IllegalArgumentException("Artista não pode ser nulo");
-        }
-        if (artista.getNome() == null || artista.getNome().trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome do artista não pode ser nulo ou vazio");
-        }
-        Artista artistaSalvo = (Artista) artistaRepositorio.buscarPorId(artista.getId());
-        if(artistaSalvo == null) {
-            throw new IllegalArgumentException("Artista não encontrado");
-        }
-        artistaRepositorio.gravar(artista);
-    }
-
 
     public void excluir(Artista artista) {
         if(artista == null) {
@@ -79,7 +65,10 @@ public class ArtistaService {
     }
 
     public void associarFilme(Artista artista, Filme filme) {
-
         artistaRepositorio.associarFilme(artista, filme);
+    }
+
+    public void excluirFilme(Filme filme) {
+        artistaRepositorio.excluirFilme(filme);
     }
 }

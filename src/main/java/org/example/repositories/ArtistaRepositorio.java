@@ -35,6 +35,7 @@ public class ArtistaRepositorio extends  AbstractRepositorio {
         return artista.getId().equals(id);
     }
 
+    @Override
     public List<Artista> buscarPorNome(String nome) {
         nome = nome.toUpperCase();
         List<Artista> artistas = listar();
@@ -53,5 +54,16 @@ public class ArtistaRepositorio extends  AbstractRepositorio {
 
     public void associarFilme(Artista artista, Filme filme) {
         artista.associarFilme(filme);
+    }
+
+    public void excluirFilme(Filme filme) {
+        List<Artista> artistas = listar();
+        for (Artista artista : artistas) {
+            if(artista.getFilmes() == null){
+                continue;
+            } else if(artista.getFilmes().contains(filme)) {
+                artista.desassociarFilme(filme);
+            }
+        }
     }
 }

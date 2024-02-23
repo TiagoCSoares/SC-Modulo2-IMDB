@@ -1,40 +1,40 @@
-package org.example.view.artista;
+package org.example.view.diretor;
 
-import org.example.entites.Artista;
-import org.example.services.ArtistaService;
+import org.example.entites.Diretor;
+import org.example.services.DiretorService;
 import org.example.services.FilmeService;
 import org.example.view.verificacoes.VerificarDataNascimento;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class CadastrarArtistaView {
+public class CadastrarDiretorView {
 
-    private ArtistaService artistaService;
+    private DiretorService diretorService;
     private FilmeService filmeService;
 
-    public CadastrarArtistaView(ArtistaService artistaService) {
-        this.artistaService = artistaService;
+    public CadastrarDiretorView(DiretorService diretorService) {
+        this.diretorService = diretorService;
     }
 
     public void execute() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Informe o nome do artista:");
+        System.out.println("Informe o nome do diretor:");
         String nome = scanner.nextLine();
 
-        List artistasCadastrados = artistaService.pesquisarPorNome(nome);
-        if(artistasCadastrados != null) {
-            System.out.println("Artista já cadastrado");
+        List diretoresCadastrados = diretorService.pesquisarPorNome(nome);
+        if(diretoresCadastrados != null) {
+            System.out.println("Diretor já cadastrado");
             return;
 
         }
 
-        System.out.println("Digite a data de nascimento do artista (DD/MM/YYYY):");
+        System.out.println("Digite a data de nascimento do diretor (DD/MM/YYYY):");
         String dataNascimento = scanner.nextLine();
         dataNascimento =  new VerificarDataNascimento().verificarDataNascimento(dataNascimento);
 
-        System.out.println("Digite o sexo do artista(M/F):");
+        System.out.println("Digite o sexo do diretor(M/F):");
         char sexo = scanner.nextLine().charAt(0);
         sexo = Character.toUpperCase(sexo);
         while(sexo != 'M' && sexo != 'F') {
@@ -43,8 +43,7 @@ public class CadastrarArtistaView {
             sexo = Character.toUpperCase(sexo);
         }
 
-
-        Artista artista = new Artista(nome, dataNascimento, sexo, null);
-        artistaService.criar(artista);
+        Diretor diretor = new Diretor(nome, dataNascimento, sexo, null);
+        diretorService.criar(diretor);
     }
 }

@@ -1,20 +1,8 @@
 package org.example.view.verificacoes;
 
-import org.example.entites.Artista;
-import org.example.entites.Filme;
-import org.example.services.ArtistaService;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-public class VerificacoesArtistaDiretor {
-
-    private ArtistaService artistaService;
-
-    public VerificacoesArtistaDiretor(ArtistaService artistaService) {
-        this.artistaService = artistaService;
-    }
+public class VerificarDataNascimento {
 
     public String verificarDataNascimento(String dataNascimento) {
         Scanner scanner = new Scanner(System.in);
@@ -43,17 +31,5 @@ public class VerificacoesArtistaDiretor {
             }
         }
         return dataNascimento;
-    }
-
-
-    public List verficarArtistaCadastrado(String nome) {
-        List<Artista> artistas = artistaService.listar();
-        List artistasCadastrados = null;
-        for (Artista artista : artistas) {
-            if (artista.getNome().equals(nome)) {
-                artistasCadastrados.add(artista);
-            }
-        }
-        return artistasCadastrados;
     }
 }
