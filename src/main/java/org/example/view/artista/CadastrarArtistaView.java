@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class CadastrarArtistaView {
 
     private ArtistaService artistaService;
-    private FilmeService filmeService;
 
     public CadastrarArtistaView(ArtistaService artistaService) {
         this.artistaService = artistaService;
