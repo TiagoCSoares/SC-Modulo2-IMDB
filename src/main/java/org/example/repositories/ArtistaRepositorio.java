@@ -5,6 +5,7 @@ import org.example.entites.Artista;
 import org.example.entites.Filme;
 import org.example.resources.EscreverArquivos;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -37,11 +38,15 @@ public class ArtistaRepositorio extends  AbstractRepositorio {
     public List<Artista> buscarPorNome(String nome) {
         nome = nome.toUpperCase();
         List<Artista> artistas = listar();
-        List<Artista> artistasEncontrados = null;
+        List<Artista> artistasEncontrados = new ArrayList<>();
+
         for (Artista artista : artistas) {
             if (artista.getNome().toUpperCase().contains(nome)) {
                 artistasEncontrados.add(artista);
             }
+        }
+        if(artistasEncontrados.isEmpty()){
+            return null;
         }
         return artistasEncontrados;
     }

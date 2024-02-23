@@ -22,7 +22,7 @@ public class Menu extends AbstractMenuView{
                 "1 - Filmes",
                 "2 - Artistas",
                 "3 - Diretores",
-                "0 - Sair"
+                "0 - Sair\n"
         });
         this.artistaService = artistaService;
         this.filmeService = filmeService;

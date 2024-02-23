@@ -2,6 +2,7 @@ package org.example.entites;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Pessoa {
 
@@ -52,11 +53,13 @@ public abstract class Pessoa {
 
         public int calcularIdade() {
                 // Converter a string da data de nascimento para um objeto LocalDate
-                LocalDate dataNascimento = LocalDate.parse(this.dataNascimento);
+                String dataNascimentoFormatada = dataNascimento.replace("/", "-");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                LocalDate dataNascimentoLocalDate = LocalDate.parse(dataNascimentoFormatada, formatter);
 
                 // Calcular a diferença entre a data atual e a data de nascimento para obter a idade
                 LocalDate dataAtual = LocalDate.now();
-                Period periodo = Period.between(dataNascimento, dataAtual);
+                Period periodo = Period.between(dataNascimentoLocalDate, dataAtual);
 
                 // Retornar a idade em anos
                 return periodo.getYears();

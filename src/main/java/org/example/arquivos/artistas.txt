@@ -1,2 +1,0 @@
-1        | tiago                          | 27/08/2001 | M  | null     - ilha do medo                                  - suspense   | null     - lakaka                                        - lakaka    
-2        | fsa                            | 20/02/1998 | M 

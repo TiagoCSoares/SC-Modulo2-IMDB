@@ -16,7 +16,7 @@ public class ListarArtistaView {
 
     public void execute() {
         List<Artista> artistas = artistaService.listar();
-        if (artistas != null) {
+        if (!artistas.isEmpty()) {
             System.out.printf("%-8s | %-30s | %-5s | %-4s | %-25s - %-15s\n",
                     "ID", "Nome", "Idade", "Sexo", "Nome Filme", "Genero");
             for (Object obj : artistas) {

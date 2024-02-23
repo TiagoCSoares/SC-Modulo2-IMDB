@@ -4,6 +4,7 @@ import org.example.banco.BancoDeDados;
 import org.example.entites.Artista;
 import org.example.entites.Filme;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FilmeRepositorio extends AbstractRepositorio{
@@ -26,11 +27,14 @@ public class FilmeRepositorio extends AbstractRepositorio{
     public List<Filme> buscarPorNome(String nome) {
         nome = nome.toUpperCase();
         List<Filme> filmes = listar();
-        List<Filme> filmesEncontrados = null;
+        List<Filme> filmesEncontrados = new ArrayList<>();
         for (Filme filme : filmes) {
             if (filme.getNome().toUpperCase().contains(nome)) {
                 filmesEncontrados.add(filme);
             }
+        }
+        if(filmesEncontrados.isEmpty()){
+            return null;
         }
         return filmesEncontrados;
     }
@@ -48,7 +52,6 @@ public class FilmeRepositorio extends AbstractRepositorio{
         for (Filme filme : filmes) {
             if(filme.getArtistas() == null){
                 continue;
-
             } else if(filme.getArtistas().contains(artista)) {
                 filme.desassociarArtista(artista);
             }

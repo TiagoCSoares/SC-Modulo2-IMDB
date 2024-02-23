@@ -11,7 +11,7 @@ public abstract class AbstractMenuView {
     }
 
     public void execute(){
-        System.out.println("Escolha uma opção:");
+        System.out.println("\nEscolha uma opção:");
         for (String option : options) {
             System.out.println(option);
         }

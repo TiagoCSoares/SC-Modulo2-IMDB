@@ -28,8 +28,6 @@ public class Main {
         LerArquivos.preencherBancoArtistas(artistaService);
         new LimparArquivos().limparArquivos();
 
-        // TODO: Criar as associações existentes nos arquivos
-
         Menu principal = new Menu(artistaService, filmeService);
         principal.execute();
     }

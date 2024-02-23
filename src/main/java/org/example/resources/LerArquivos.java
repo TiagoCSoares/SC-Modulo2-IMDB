@@ -46,19 +46,16 @@ public class LerArquivos {
                         List<Filme> filmes = new ArrayList<>();
                         for(int i = 4; i < elementos.length; i++) {
                             String[] filme = elementos[i].split("\\s*\\-\\s*");
-                            String nomeFilme = filme[1].trim();
-                            String genero = filme[2].trim();
-                            Integer dataLancamento = Integer.parseInt(filme[4].trim());
-                            String descricao = filme[3].trim();
-                            Integer duracao = Integer.parseInt(filme[5].trim());
+                            String nomeFilme = filme[0].trim();
+                            String genero = filme[1].trim();
+                            String descricao = filme[2].trim();
+                            Integer dataLancamento = Integer.parseInt(filme[3].trim());
+                            Integer duracao = Integer.parseInt(filme[4].trim());
                             Filme novoFilme = new Filme(nomeFilme, genero, descricao, dataLancamento, duracao, null, null);
                             filmes.add(novoFilme);
                         }
                         Artista artista = new Artista(nome, dataNascimento, sexo, filmes);
                         artistaService.criar(artista);
-                        // TODO: Criar arquivo da Associação de filmes ao artista
-                        // o arquivo terá em cada linha um artista e um filme
-                        // artistaService.associarFilme(artista, filmes);
                     }
                 }
             } catch (IOException e) {
