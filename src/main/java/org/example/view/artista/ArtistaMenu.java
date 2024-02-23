@@ -18,7 +18,7 @@ public class ArtistaMenu extends AbstractMenuView {
             "3 - Excluir Artista",
             "4 - Listar Artistas",
             "5 - Associar Filme ao Artista",
-            //"6 - Listar Filmes do Artista",
+            "6 - Listar Filmes do Artista",
             "0 - Voltar"
         });
         this.artistaService = artistaService;
@@ -27,16 +27,18 @@ public class ArtistaMenu extends AbstractMenuView {
 
     @Override
     protected Boolean validOption(Integer option) {
-        return option >= 0 && option <= 5;
+        return option >= 0 && option <= 6;
     }
 
     @Override
     protected void executeOption(Integer option) {
         switch (option) {
             case 1 -> new CadastrarArtistaView(artistaService).execute();
+            //case 2 -> new AtualizarArtistaView(artistaService).execute();
             case 3 -> new ExcluirArtistaView(artistaService, filmeService).execute();
             case 4 -> new ListarArtistaView(artistaService/*, filmeService*/).execute();
             case 5 -> new AssociarFilmeView(artistaService, filmeService).execute();
+            case 6 -> new ListarFilmesView(artistaService, filmeService).execute();
             // TODO: Opção de listar filmes do artista, para isso o listar artistas deixaria de mostrar os filmes
             case 0 -> {return;}
             default -> System.out.println("Opcao não disponível");
