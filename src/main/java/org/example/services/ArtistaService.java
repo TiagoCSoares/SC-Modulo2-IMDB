@@ -6,10 +6,8 @@ import org.example.repositories.ArtistaRepositorio;
 import org.example.resources.EscreverArquivos;
 
 import java.util.List;
-import java.util.Set;
 
 public class ArtistaService {
-
 
     private ArtistaRepositorio artistaRepositorio;
 

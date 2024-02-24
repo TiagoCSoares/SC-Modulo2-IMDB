@@ -20,8 +20,8 @@ public class Filme {
         this.descricao = descricao;
         this.anoLancamento = anoLancamento;
         this.duracao = duracao;
-        this.artistas = artistas != null ? artistas : new ArrayList<>(); // Inicialize a lista de artistas
-        this.diretores = diretores != null ? diretores : new ArrayList<>(); // Inicialize a lista de diretores
+        this.artistas = artistas != null ? new ArrayList<>(artistas) : new ArrayList<>(); // Inicialize a lista de artistas
+        this.diretores = diretores != null ? new ArrayList<>(diretores) : new ArrayList<>(); // Inicialize a lista de diretores
     }
 
     public Long getId() {

@@ -1,9 +1,9 @@
 package org.example.view.filme;
 
-import org.example.entites.Artista;
 import org.example.entites.Diretor;
 import org.example.entites.Filme;
 import org.example.services.FilmeService;
+import org.example.view.verificacoes.VerificarFilme;
 
 import java.util.List;
 import java.util.Scanner;
@@ -18,45 +18,25 @@ public class ListarDiretoresView {
 
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-
         System.out.println("Qual o nome do filme?");
         String nome = scanner.nextLine();
 
         List<Filme> filmes = filmeService.pesquisarPorNome(nome);
-        Filme achouFilme = null;
+        Filme achouFilme = new VerificarFilme().verificarFilme(filmes);
 
-        if (filmes != null) {
-            for (Filme filme : filmes) {
-                System.out.printf("%-25s | %-15s\n",
-                        "Nome do Filme", "Gênero");
-                System.out.printf("%-25s | %-15s\n",
-                        filme.getNome(), filme.getGenero());
-
-                char resposta = scanner.nextLine().charAt(0);
-                resposta = Character.toUpperCase(resposta);
-
-                if (resposta == 'S') {
-                    achouFilme = filme;
-                    break;
-                }
-            }
-
-            if (achouFilme == null) {
+        if (achouFilme == null) {
                 System.out.println("O filme não foi encontrado!");
-            } else if (achouFilme.getDiretores().isEmpty() || achouFilme.getDiretores() == null) {
+            } else if (achouFilme.getDiretores() == null || achouFilme.getDiretores().isEmpty()) {
                 System.out.println("O filme não possui diretores cadastrados!");
             } else {
-                System.out.printf("| %-25s | %-5s | %-4s\n",
-                        "Nome", "Idade", "Sexo");
+                System.out.printf("| %-8s | %-25s | %-5s | %-4s\n",
+                        "ID", "Nome", "Idade", "Sexo");
 
                 for (Diretor diretor : achouFilme.getDiretores()) {
-                    System.out.printf("| %-25s | %-5d | %-4c\n",
-                            diretor.getNome(), diretor.calcularIdade(), diretor.getSexo());
+                    System.out.printf("| %-8d | %-25s | %-5d | %-4c\n",
+                           diretor.getId(), diretor.getNome(), diretor.calcularIdade(), diretor.getSexo());
                 }
                 System.out.println();
             }
-        } else {
-            System.out.println("Não há filmes cadastrados!");
         }
     }
-}

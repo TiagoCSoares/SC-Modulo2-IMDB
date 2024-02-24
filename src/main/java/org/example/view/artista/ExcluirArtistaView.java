@@ -3,6 +3,7 @@ package org.example.view.artista;
 import org.example.entites.Artista;
 import org.example.services.ArtistaService;
 import org.example.services.FilmeService;
+import org.example.view.verificacoes.VerificarArtista;
 
 import java.util.List;
 import java.util.Scanner;
@@ -24,27 +25,13 @@ public class ExcluirArtistaView {
         String nome = scanner.nextLine();
 
         List<Artista> listaArtistas = artistaService.pesquisarPorNome(nome);
-        Artista achouArtista = null;
-
-        if (listaArtistas != null) {
-            for (Artista artista : listaArtistas) {
-                System.out.print(artista.getNome() + "|" + artista.getDataNascimento());
-                System.out.println("Esse é o artista desejado?(S/N)");
-                char resposta = scanner.nextLine().charAt(0);
-                resposta = Character.toUpperCase(resposta);
-                if (resposta == 'S') {
-                    achouArtista = artista;
-                    artistaService.excluir(achouArtista);
-                    filmeService.excluirArtista(achouArtista);
-                    break;
-                }
-            }
-        } else {
-            System.out.println("Não há artistas cadastrados!");
-        }
+        Artista achouArtista = new VerificarArtista().verificarArtista(listaArtistas);
 
         if (achouArtista == null) {
             System.out.println("Artista não encontrado");
+        } else {
+            artistaService.excluir(achouArtista);
+            filmeService.excluirArtista(achouArtista);
         }
     }
 }

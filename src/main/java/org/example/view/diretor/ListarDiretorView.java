@@ -21,16 +21,15 @@ public class ListarDiretorView {
             System.out.printf("%-8s | %-25s | %-5s | %-4s | %-25s - %-15s\n",
                     "ID", "Nome", "Idade", "Sexo", "Nome Filme", "Genero");
 
-            for (Object obj : diretores) {
-                Diretor diretor = (Diretor) obj;
-                System.out.printf("%-8d | %-25s | %-5d | %-4c",
+            for (Diretor diretor : diretores) {
+                System.out.printf("%-8d | %-25s | %-5d | %-4c ",
                         diretor.getId(), diretor.getNome(),
                         diretor.calcularIdade(), diretor.getSexo());
 
                 if (diretor.getFilmes() != null) {
                     for (Filme filmes : diretor.getFilmes()) {
                         if (filmes != null) {
-                            System.out.printf(" | %-25s - %-15s", filmes.getNome(), filmes.getGenero());
+                            System.out.printf("| %-25s - %-15s", filmes.getNome(), filmes.getGenero());
                         }
                     }
                     System.out.println();

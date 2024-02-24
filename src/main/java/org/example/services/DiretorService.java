@@ -1,9 +1,8 @@
 package org.example.services;
 
-import org.example.entites.Artista;
+
 import org.example.entites.Diretor;
 import org.example.entites.Filme;
-import org.example.repositories.ArtistaRepositorio;
 import org.example.repositories.DiretorRepositorio;
 import org.example.resources.EscreverArquivos;
 

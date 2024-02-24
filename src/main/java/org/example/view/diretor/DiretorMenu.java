@@ -1,11 +1,10 @@
 package org.example.view.diretor;
 
-import org.example.entites.Diretor;
-import org.example.services.ArtistaService;
+
 import org.example.services.DiretorService;
 import org.example.services.FilmeService;
 import org.example.view.AbstractMenuView;
-import org.example.view.artista.*;
+
 
 public class DiretorMenu extends AbstractMenuView {
 

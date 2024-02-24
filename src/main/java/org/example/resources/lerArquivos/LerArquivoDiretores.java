@@ -21,8 +21,7 @@ public class LerArquivoDiretores extends LerArquivoAbstract {
 
     protected void preencherBanco(Object service) {
 
-        if (service instanceof DiretorService) {
-            DiretorService diretorService = (DiretorService) service;
+        if (service instanceof DiretorService diretorService) {
             try (var reader = new BufferedReader(new FileReader(getNomeArquivo()))) {
                 String linha;
                 while ((linha = reader.readLine()) != null) {
@@ -55,9 +54,9 @@ public class LerArquivoDiretores extends LerArquivoAbstract {
         String[] filme = elementos.split("\\s*-\\s*");
         String nomeFilme = filme[0].trim();
         String genero = filme[1].trim();
-        String descricao = filme[2].trim();
-        Integer dataLancamento = Integer.parseInt(filme[3].trim());
-        Integer duracao = Integer.parseInt(filme[4].trim());
+        Integer dataLancamento = Integer.parseInt(filme[2].trim());
+        Integer duracao = Integer.parseInt(filme[3].trim());
+        String descricao = filme[4].trim();
         return new Filme(nomeFilme, genero, descricao, dataLancamento, duracao, null, null);
     }
 }

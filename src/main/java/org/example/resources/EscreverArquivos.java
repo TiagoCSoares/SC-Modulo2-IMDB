@@ -3,14 +3,11 @@ package org.example.resources;
 import org.example.entites.Artista;
 import org.example.entites.Diretor;
 import org.example.entites.Filme;
-import org.example.repositories.ArtistaRepositorio;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 public class EscreverArquivos {
 
@@ -74,7 +71,7 @@ public class EscreverArquivos {
                 }
                 if (filme.getDiretores() != null && !filme.getDiretores().isEmpty()) {
                     for (Diretor diretor : filme.getDiretores()) {
-                        writer.write(String.format("lakaka \\ %-30s - %-10s - %-2c", diretor.getNome(), diretor.getDataNascimento(), diretor.getSexo()));
+                        writer.write(String.format("\\ %-30s - %-10s - %-2c", diretor.getNome(), diretor.getDataNascimento(), diretor.getSexo()));
                     }
                 }
                 writer.newLine();

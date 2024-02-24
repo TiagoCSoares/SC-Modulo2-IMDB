@@ -1,19 +1,13 @@
 package org.example.view;
 
-import org.example.entites.Diretor;
-import org.example.resources.EscreverArquivos;
 import org.example.services.ArtistaService;
 import org.example.services.DiretorService;
 import org.example.services.FilmeService;
 import org.example.view.artista.ArtistaMenu;
-import org.example.view.artista.ListarArtistaView;
 import org.example.view.diretor.DiretorMenu;
 import org.example.view.filme.FilmeMenu;
 
-import java.nio.file.DirectoryStream;
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Menu extends AbstractMenuView{
 

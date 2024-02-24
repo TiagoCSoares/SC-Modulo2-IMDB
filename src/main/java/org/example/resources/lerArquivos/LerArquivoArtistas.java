@@ -27,7 +27,6 @@ public class LerArquivoArtistas extends LerArquivoAbstract {
                 while ((linha = reader.readLine()) != null) {
                     String[] elementos = linha.split("\\s*\\|\\s*");
                     if (elementos.length > 0 && !elementos[0].trim().isEmpty()) {
-                        // O primeiro elemento será a id
                         Artista artista = getArtista(elementos);
                         artistaService.criar(artista);
                     }

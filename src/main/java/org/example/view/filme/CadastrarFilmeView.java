@@ -1,13 +1,10 @@
 package org.example.view.filme;
 
-import org.example.entites.Artista;
+
 import org.example.entites.Filme;
-import org.example.services.ArtistaService;
 import org.example.services.FilmeService;
-import org.example.view.verificacoes.VerificarDataNascimento;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class CadastrarFilmeView {
@@ -23,13 +20,6 @@ public class CadastrarFilmeView {
 
         System.out.println("Informe o nome do filme:");
         String nome = scanner.nextLine();
-
-        List filmesCadastrados = filmeService.pesquisarPorNome(nome);
-        if(filmesCadastrados != null) {
-            System.out.println("Filme já cadastrado");
-            return;
-
-        }
 
         System.out.println("Digite o genêro do filme:");
         String genero = scanner.nextLine();

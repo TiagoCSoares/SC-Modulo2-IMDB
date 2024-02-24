@@ -2,10 +2,8 @@ package org.example.view.artista;
 
 import org.example.entites.Artista;
 import org.example.services.ArtistaService;
-import org.example.services.FilmeService;
 import org.example.view.verificacoes.VerificarDataNascimento;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class CadastrarArtistaView {
@@ -21,13 +19,6 @@ public class CadastrarArtistaView {
 
         System.out.println("Informe o nome do artista:");
         String nome = scanner.nextLine();
-
-        List artistasCadastrados = artistaService.pesquisarPorNome(nome);
-        if(artistasCadastrados != null) {
-            System.out.println("Artista já cadastrado");
-            return;
-
-        }
 
         System.out.println("Digite a data de nascimento do artista (DD/MM/YYYY):");
         String dataNascimento = scanner.nextLine();

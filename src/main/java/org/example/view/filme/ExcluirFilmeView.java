@@ -1,10 +1,11 @@
 package org.example.view.filme;
 
-import org.example.entites.Artista;
+
 import org.example.entites.Filme;
 import org.example.services.ArtistaService;
 import org.example.services.DiretorService;
 import org.example.services.FilmeService;
+import org.example.view.verificacoes.VerificarFilme;
 
 import java.util.List;
 import java.util.Scanner;
@@ -28,25 +29,14 @@ public class ExcluirFilmeView {
         String nome = scanner.nextLine();
 
         List<Filme> listaFilmes = filmeService.pesquisarPorNome(nome);
-        Filme achouFilme = null;
+        Filme achouFilme = new VerificarFilme().verificarFilme(listaFilmes);
 
-        if(listaFilmes != null) {
-            for (Filme filme : listaFilmes) {
-                System.out.print(filme.getNome() + "|" + filme.getGenero());
-                System.out.println("Esse é o filme desejado?(S/N)");
-                char resposta = scanner.nextLine().charAt(0);
-                resposta = Character.toUpperCase(resposta);
-                if (resposta == 'S') {
-                    achouFilme = filme;
-                    filmeService.excluir(achouFilme);
-                    artistaService.excluirFilme(achouFilme);
-                    diretorService.excluirFilme(achouFilme);
-                    break;
-                }
-            }
-        }
         if(achouFilme == null) {
             System.out.println("Filme não encontrado");
+        } else {
+            filmeService.excluir(achouFilme);
+            artistaService.excluirFilme(achouFilme);
+            diretorService.excluirFilme(achouFilme);
         }
     }
 }

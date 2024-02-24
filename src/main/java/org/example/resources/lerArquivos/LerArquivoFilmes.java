@@ -19,11 +19,10 @@ public class LerArquivoFilmes extends LerArquivoAbstract{
     }
 
     protected void preencherBanco(Object service) {
-
         if (service instanceof FilmeService filmeService) {
-            try(var reader = new BufferedReader(new FileReader(getNomeArquivo()))) {
+            try (var reader = new BufferedReader(new FileReader(getNomeArquivo()))) {
                 String linha;
-                while((linha = reader.readLine()) != null) {
+                while ((linha = reader.readLine()) != null) {
                     String[] elementos = linha.split("\\s*\\|\\s*");
                     if (elementos.length > 0 && !elementos[0].trim().isEmpty()) {
                         Filme filme = getFilme(elementos, linha);
@@ -44,20 +43,23 @@ public class LerArquivoFilmes extends LerArquivoAbstract{
         Integer dataLancamento = Integer.parseInt(elementos[3].trim());
         Integer duracao = Integer.parseInt(elementos[4].trim());
 
-        List<Artista> artistas = getArtistas(elementos);
+        List<Artista> artistas = new ArrayList<>();
+        if (elementos.length >= 6) {
+            artistas = getArtistas(elementos);
+        }
 
         List<Diretor> diretores = new ArrayList<>();
-        if(linha.contains("\\")) {
-            elementos = linha.split("\\s*\\\\\\s*");
-            diretores = getDiretores(elementos);
+        if (linha.contains("\\")) {
+            String[] diretoresLine = linha.substring(linha.indexOf("\\") + 1).split("\\s*\\\\\\s*");
+            diretores = getDiretores(diretoresLine);
         }
-        return new Filme(nome, descricao, genero, dataLancamento, duracao, artistas, diretores);
+        return new Filme(nome, genero, descricao, dataLancamento, duracao, artistas, diretores);
     }
 
     private static List<Artista> getArtistas(String[] elementos) {
         List<Artista> artistas = new ArrayList<>();
 
-        for(int i = 6; i < elementos.length; i++) {
+        for (int i = 6; i < elementos.length; i++) {
             String[] filme = elementos[i].split("\\s*-\\s*");
             String nomeArtista = filme[0].trim();
             String dataNascimento = filme[1].trim();
@@ -70,8 +72,8 @@ public class LerArquivoFilmes extends LerArquivoAbstract{
 
     private static List<Diretor> getDiretores(String[] elementos) {
         List<Diretor> diretores = new ArrayList<>();
-        for(int i = 0; i < elementos.length; i++) {
-            String[] diretor = elementos[i].split("\\s*-\\s*");
+        for (String elemento : elementos) {
+            String[] diretor = elemento.split("\\s*-\\s*");
             String nomeDiretor = diretor[0].trim();
             String dataNascimento = diretor[1].trim();
             char sexo = diretor[2].trim().charAt(0);
@@ -80,4 +82,5 @@ public class LerArquivoFilmes extends LerArquivoAbstract{
         }
         return diretores;
     }
+
 }

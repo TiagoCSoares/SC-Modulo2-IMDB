@@ -1,8 +1,6 @@
 package org.example.view.filme;
 
-import org.example.entites.Artista;
 import org.example.entites.Filme;
-import org.example.services.ArtistaService;
 import org.example.services.FilmeService;
 
 import java.util.List;

@@ -1,11 +1,9 @@
 package org.example.view.filme;
 
-import org.example.entites.Artista;
 import org.example.services.ArtistaService;
 import org.example.services.DiretorService;
 import org.example.services.FilmeService;
 import org.example.view.AbstractMenuView;
-import org.example.view.artista.AssociarFilmeView;
 
 
 public class FilmeMenu extends AbstractMenuView {

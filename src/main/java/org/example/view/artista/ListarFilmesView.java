@@ -3,7 +3,7 @@ package org.example.view.artista;
 import org.example.entites.Artista;
 import org.example.entites.Filme;
 import org.example.services.ArtistaService;
-import org.example.services.FilmeService;
+import org.example.view.verificacoes.VerificarArtista;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,11 +11,9 @@ import java.util.Scanner;
 public class ListarFilmesView {
 
     private ArtistaService artistaService;
-    private FilmeService filmeService;
 
-    public ListarFilmesView(ArtistaService artistaService, FilmeService filmeService) {
+    public ListarFilmesView(ArtistaService artistaService) {
         this.artistaService = artistaService;
-        this.filmeService = filmeService;
     }
 
     public void execute() {
@@ -25,20 +23,7 @@ public class ListarFilmesView {
         String nome = scanner.nextLine();
 
         List<Artista> artistas = artistaService.pesquisarPorNome(nome);
-        Artista achouArtista = null;
-
-        if (artistas != null) {
-            for (Artista artista : artistas) {
-                System.out.print(artista.getNome() + "|" + artista.getDataNascimento());
-                System.out.println("Esse é o artista desejado?(S/N)");
-                char resposta = scanner.nextLine().charAt(0);
-                resposta = Character.toUpperCase(resposta);
-                if (resposta == 'S') {
-                    achouArtista = artista;
-                    break;
-                }
-            }
-        }
+        Artista achouArtista = new VerificarArtista().verificarArtista(artistas);
 
         if (achouArtista == null) {
             System.out.println("Artista não encontrado");
@@ -51,13 +36,13 @@ public class ListarFilmesView {
                     achouArtista.getId(), achouArtista.getNome(),
                     achouArtista.calcularIdade(), achouArtista.getSexo());
 
-            System.out.printf("%-25s | %-15s | %-10s | %-7s | %-100s\n",
-                    "Nome Filme", "Genero", "Lancamento", "Duração", "Descrição");
+            System.out.printf("%-8s | %-25s | %-15s | %-10s | %-7s | %-100s\n",
+                   "ID Filme", "Nome Filme", "Genero", "Lancamento", "Duração", "Descrição");
 
             for (Filme filmes : achouArtista.getFilmes()) {
-                System.out.printf("%-25s | %-15s | %-10s | %-7d | %-100s\n",
-                        filmes.getNome(), filmes.getGenero(), filmes.getDataLancamento(),
-                        filmes.getDuracao(), filmes.getDescricao());
+                System.out.printf("%-8d | %-25s | %-15s | %-10s | %-7d | %-100s\n",
+                        filmes.getId(), filmes.getNome(), filmes.getGenero(),
+                        filmes.getDataLancamento(), filmes.getDuracao(), filmes.getDescricao());
             }
             System.out.println();
         }
